@@ -47,14 +47,16 @@ if __name__ == '__main__':
     import os
 
     server = MaxMCPUDPServer(
-        os.environ.get("PD_OSC_HOST", "192.168.1.235"),
+        os.environ.get("PD_OSC_HOST", "127.0.0.1"),
         int(os.environ.get("PD_OSC_PORT", "5000"))
     )
     # Add a 'cycle~' object at position (100, 100), name it 'osc1'
-    server.add_object("cycle~", [400], [100, 100], varname="osc1")
-    time.sleep(0.1)
-    # Add a 'dac~' object at (200, 100), name it 'dac1'
-    server.add_object("dac~", [], [200, 100], varname="dac1")
-    time.sleep(0.1)
-    # Connect 'osc1' outlet 0 to 'dac1' inlet 0
-    server.connect("osc1", "dac1", outlet=0, inlet=0)
+    # server.add_object("cycle~", [400], [100, 100], varname="osc1")
+    # time.sleep(0.1)
+    # # Add a 'dac~' object at (200, 100), name it 'dac1'
+    # server.add_object("dac~", [], [200, 100], varname="dac1")
+    # time.sleep(0.1)
+    # # Connect 'osc1' outlet 0 to 'dac1' inlet 0
+    # server.connect("osc1", "dac1", outlet=0, inlet=0)
+
+    server.sock.send_message("/mcp", "hi")
