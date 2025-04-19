@@ -4,4 +4,5 @@ version = "0.1.0"
 description = "Max/MSP integration through Model Context Protocol"
 dependencies = [
     "python-osc",
+    "mcp[cli]"
 ]
