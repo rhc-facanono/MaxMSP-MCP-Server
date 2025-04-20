@@ -8,6 +8,8 @@ temp/
 # C extensions
 *.so
 
+node_modules/
+
 .DS_Store
 
 # Distribution / packaging
