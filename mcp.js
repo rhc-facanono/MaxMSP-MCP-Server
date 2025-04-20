@@ -1,5 +1,3 @@
-var namespace = "/mcp/response";
-var socket = io.connect('http://127.0.0.1:' + 5002 + namespace);
 
 autowatch=1;
 inlets = 1; // 0: JSON input
