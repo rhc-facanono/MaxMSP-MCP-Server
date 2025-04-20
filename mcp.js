@@ -1,4 +1,7 @@
 autowatch=1;
+inlets = 1; // 0: JSON input
+outlets = 2; // 0: error messages, 1: feedback messages
+
 
 var p = this.patcher
 
@@ -19,6 +22,13 @@ function anything() {
     if (!data) return;
 
     switch (data.action) {
+        case "fetch_test":
+            if (data.request_id) {
+                fetch_test(data.request_id);
+            } else {
+                outlet(0, "error", "Missing request_id for fetch_test");
+            }
+            break;
         case "add_object":
             if (data.obj_type && data.position && data.varname) {
                 add_object(data.position[0], data.position[1], data.obj_type, data.args, data.varname);
@@ -50,6 +60,14 @@ function anything() {
         default:
             outlet(0, "error", "Unknown action: " + data.action);
     }
+}
+
+function notify_test(){
+    outlet(1, "/mcp/notify", JSON.stringify({"results": "some notification"}, null, 2));
+}
+
+function fetch_test(request_id) {
+    outlet(1, "/mcp/response", request_id, JSON.stringify({"results": "my response"}, null, 2));
 }
 
 function add_object(x, y, type, args, var_name) {

@@ -1,6 +1,11 @@
 # server.py
 from mcp.server.fastmcp import FastMCP, Context
 from contextlib import asynccontextmanager
+import asyncio
+
+from typing import Callable, Any
+import logging
+import uuid
 import os
 import json
 
@@ -11,7 +16,7 @@ MAX_OSC_HOST = os.environ.get(
 MAXMSP_UDP_PORT = int(
     os.environ.get("MAXMSP_UDP_PORT", "5000")
 )  # Must match your [udpreceive] port in Max
-# MAX_FEEDBACK_PORT = int(os.environ.get("MAX_FEEDBACK_PORT", "5001"))
+MAXMSP_FEEDBACK_PORT = int(os.environ.get("MAXMSP_FEEDBACK_PORT", "5002"))
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 docs_path = os.path.join(current_dir, "docs.json")
@@ -22,27 +27,116 @@ for obj_list in docs.values():
     for obj in obj_list:
         flattened_docs[obj["name"]] = obj
 
+maxmsp = None
+osc_server_started = False
 
 class MaxMSPConnection:
-    def __init__(self, max_ip, max_port):
+    def __init__(self, max_ip, max_port, feedback_port):
         from pythonosc.udp_client import SimpleUDPClient
+        from pythonosc.dispatcher import Dispatcher
+        
+        self.host = max_ip
+        self.port = max_port
+        self.feedback_port = feedback_port
 
         self.sock = SimpleUDPClient(max_ip, max_port)
+        self.dispatcher = Dispatcher()
+        self.dispatcher.map("/mcp/notify", on_notify)
+        self.dispatcher.map("/mcp/response", self._on_response)
+        self._pending = {} # fetch requests that are not yet completed
 
     def send_command(self, cmd: dict):
-        """Send a command to MaxMSP to involke the corresponding JavaScript function."""
+        """Send a command to MaxMSP."""
         self.sock.send_message("/mcp", json.dumps(cmd))
-        print(f"Sent to MaxMSP: {cmd}")
+        logging.info(f"Sent to MaxMSP: {cmd}")
 
+    async def send_request(self, payload: dict, timeout = 2.0):
+        """Send a fetch request to MaxMSP."""
+        request_id = str(uuid.uuid4())
+        future = self.loop.create_future()
+        self._pending[request_id] = future
+
+        payload.update({"request_id": request_id})
+        self.sock.send_message("/mcp", json.dumps(payload))
+        logging.info(f"Request to MaxMSP: {payload}")
+
+        try:
+            response = await asyncio.wait_for(future, timeout)
+            return response
+        except asyncio.TimeoutError:
+            raise TimeoutError("No response received in time")
+        finally:
+            self._pending.pop(request_id, None)
+
+    def _on_response(self, address, *args):
+        # Expected: /mcp/response <request_id> <json_response>
+        logging.info(f"Response: {args}")
+        if len(args) < 2:
+            return
+        request_id, json_response = args[0], args[1]
+        future = self._pending.get(request_id)
+        if future and not future.done():
+            future.set_result(json.loads(json_response))
+
+    async def start_server(self) -> None:
+        """IMPORTANT: This method should only be called ONCE per application instance.
+        Multiple calls can lead to binding multiple ports unnecessarily.
+        """
+        from pythonosc.osc_server import AsyncIOOSCUDPServer
+        
+        try:
+            # Create the server with the current feedback port
+            self.loop = asyncio.get_event_loop()
+            server = AsyncIOOSCUDPServer(
+                (self.host, self.feedback_port), 
+                self.dispatcher, 
+                self.loop
+            )
+            await server.create_serve_endpoint()
+            
+            # Log a warning if we had to use an alternate port
+            logging.warning(f"Make sure that Max is sending to port {self.feedback_port}")
+            return
+            
+        except OSError as e:
+            logging.error(f"Error starting OSC server: {e}")
 
 @asynccontextmanager
 async def server_lifespan(server: FastMCP):
     """Manage server lifespan"""
+    global maxmsp, osc_server_started
     try:
-        maxmsp = MaxMSPConnection(MAX_OSC_HOST, MAXMSP_UDP_PORT)
-        yield {"maxmsp": maxmsp}
+        maxmsp = MaxMSPConnection(MAX_OSC_HOST, MAXMSP_UDP_PORT, MAXMSP_FEEDBACK_PORT)
+        try:
+            if not osc_server_started:
+                # Start with port auto-selection if the configured port is unavailable
+                await maxmsp.start_server()
+                osc_server_started = True
+                
+                if maxmsp.feedback_port != MAXMSP_FEEDBACK_PORT:
+                    logging.warning(f"Make sure Max is configured to send to port {maxmsp.feedback_port}")
+                logging.info(f"Listening on {maxmsp.host}:{maxmsp.feedback_port}")
+            else:
+                logging.info(f"OSC server already running on {maxmsp.host}:{maxmsp.feedback_port}")
+            
+            # Yield the OSC connection to make it available in the lifespan context
+            yield {"maxmsp": maxmsp}
+        except Exception as e:
+            logging.error(f"lifespan error starting OSC server: {e}")
+            raise
     finally:
         pass
+
+def on_notify(address: str, *args: Any) -> None:
+    """Handle feedback messages from Max and notify MCP.
+
+    Args:
+        address: The OSC address received
+        args: The arguments sent with the OSC message
+    """
+    
+    logging.info(f"Received feedback from: {address}")
+    logging.info(f"Content: {args}")
 
 
 # Create the MCP server with lifespan support
@@ -51,7 +145,6 @@ mcp = FastMCP(
     description="MaxMSP integration through the Model Context Protocol",
     lifespan=server_lifespan,
 )
-
 
 @mcp.tool()
 def add_max_object(
@@ -178,6 +271,21 @@ def get_object_doc(object_name: str):
             "error": "Invalid object name",
             "suggestion": "Make sure the object name is a valid MaxMSP object name.",
         }
+
+@mcp.resource("patcher://objects")
+async def test_fetch_request():
+    """Send a test fetch request to MaxMSP and return the response.
+    
+    Use this resource to verify the connection and functionality of the fetch command.
+    
+    Returns:
+        list: A list containing the response from MaxMSP.
+    """
+    
+    payload = {"action": "fetch_test"}
+    response = await maxmsp.send_request(payload)
+
+    return [response]
 
 
 if __name__ == "__main__":
