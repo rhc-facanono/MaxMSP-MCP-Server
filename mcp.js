@@ -1,3 +1,6 @@
+var namespace = "/mcp/response";
+var socket = io.connect('http://127.0.0.1:' + 5002 + namespace);
+
 autowatch=1;
 inlets = 1; // 0: JSON input
 outlets = 2; // 0: error messages, 1: feedback messages
@@ -27,6 +30,20 @@ function anything() {
                 fetch_test(data.request_id);
             } else {
                 outlet(0, "error", "Missing request_id for fetch_test");
+            }
+            break;
+        case "fetch_objects_in_patch":
+            if (data.request_id) {
+                fetch_objects_in_patch(data.request_id);
+            } else {
+                outlet(0, "error", "Missing request_id for fetch_objects_in_patch");
+            }
+            break;
+        case "fetch_objects_in_selected":
+            if (data.request_id) {
+                fetch_objects_in_patch(data.request_id);
+            } else {
+                outlet(0, "error", "Missing request_id for fetch_objects_in_patch");
             }
             break;
         case "add_object":
@@ -91,3 +108,63 @@ function disconnect_objects(src_varname, outlet_idx, dst_varname, inlet_idx) {
     var dst = p.getnamed(dst_varname);
 	p.disconnect(src, outlet_idx, dst, inlet_idx);
 }
+
+
+
+
+function remove_varname() {
+    // for debugging
+    // remove all objects' varname
+    var p = max.frontpatcher;
+    p.applydeep(function (obj) {
+        obj.varname = "";
+    });
+}
+
+function fetch_objects_in_patch(request_id) {
+    var p = max.frontpatcher;
+    var obj_count = 0;
+    var boxes = [];
+    var lines = [];
+    p.applydeep(function (obj) {
+        if (!obj.varname){
+            obj.varname = "obj-" + obj_count;
+        }
+        obj_count+=1;
+        var outputs = obj.patchcords.outputs;
+        if (outputs.length){
+            for (var i = 0; i < outputs.length; i++) {
+                lines.push({patchline: {
+                    source: [obj.varname, outputs[i].srcoutlet],
+                    destination: [outputs[i].dstobject.varname, outputs[i].dstinlet]
+                }})
+            }
+        }
+        var attrnames = obj.getattrnames();
+        var attr = {};
+        if (attrnames.length){
+            for (var i = 0; i < attrnames.length; i++) {
+                var name = attrnames[i];
+                var value = obj.getattr(name);
+                attr[name] = value;
+            }
+        }
+        boxes.push({box:{
+            selected: obj.selected,
+            maxclass: obj.maxclass,
+            varname: obj.varname,
+            patching_rect: obj.rect,
+            numinlets: obj.patchcords.inputs.length,
+            numoutputs: obj.patchcords.outputs.length,
+            // add this if no v8
+            // attributes: attr,
+        }})
+    });
+    var patcher_dict = {};
+    patcher_dict["boxes"] = boxes;
+    patcher_dict["lines"] = lines;
+    // use this if no v8
+    // outlet(1, JSON.stringify(patcher_dict, null, 2)); 
+    outlet(1, "add_boxtext", request_id, JSON.stringify(patcher_dict, null, 2));
+}
+
