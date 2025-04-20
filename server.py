@@ -64,7 +64,7 @@ class MaxMSPConnection:
             response = await asyncio.wait_for(future, timeout)
             return response
         except asyncio.TimeoutError:
-            raise TimeoutError("No response received in time")
+            raise TimeoutError(f"No response received in {timeout} seconds.")
         finally:
             self._pending.pop(request_id, None)
 
@@ -244,24 +244,22 @@ def disconnect_max_objects(
     maxmsp.send_command(cmd)
 
 
-@mcp.resource("list://objects")
-def list_objects():
-    """Returns a list of all available objects in MaxMSP."""
+@mcp.tool()
+def list_all_objects(ctx: Context) -> list:
+    """Returns a name list of all objects that can be added in MaxMSP.
+    To understand a specific object in the list, use the `get_object_doc` tool."""
     return list(flattened_docs.keys())
 
 
-@mcp.resource("docs://{object_name}")
-def get_object_doc(object_name: str):
+@mcp.tool()
+def get_object_doc(ctx: Context, object_name: str) -> dict:
     """Retrieve the official documentation for a given object.
-
     Use this resource to understand how a specific object works, including its
     description, inlets, outlets, arguments, methods(messages), and attributes.
-
     Args:
         object_name (str): Name of the object to look up.
-
     Returns:
-        dict: Official documentation details for the specified object.
+        dict: Official documentations for the specified object.
     """
     try:
         return flattened_docs[object_name]
