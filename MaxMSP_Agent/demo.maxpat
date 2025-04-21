@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 265.0, 852.0, 711.0 ],
+		"rect" : [ 41.0, 108.0, 1041.0, 673.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
@@ -23,7 +23,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 577.0, 162.0, 102.0, 22.0 ],
 					"text" : "remove_varname",
-					"varname" : "maxmcpid-306"
+					"varname" : "maxmcpid-303"
 				}
 
 			}
@@ -36,7 +36,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 603.0, 200.0, 205.0, 22.0 ],
 					"text" : "assign_mcp_identifier_to_all_objects",
-					"varname" : "maxmcpid-305"
+					"varname" : "maxmcpid-302"
 				}
 
 			}
@@ -46,8 +46,8 @@
 					"id" : "obj-7",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 568.0, 256.0, 85.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "max_mcp.js",
@@ -55,7 +55,7 @@
 					}
 ,
 					"text" : "js max_mcp.js",
-					"varname" : "maxmcpid-304"
+					"varname" : "maxmcpid-301"
 				}
 
 			}
@@ -76,10 +76,25 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 291.0, 852.0, 685.0 ],
+						"rect" : [ 41.0, 134.0, 1041.0, 647.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
+								"box" : 								{
+									"bubble" : 1,
+									"bubblepoint" : 1.0,
+									"bubbleside" : 2,
+									"id" : "obj-15",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 9.0, 7.0, 165.0, 39.0 ],
+									"text" : "AI will add objects there:",
+									"varname" : "obj-0"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"color" : [ 0.869177997112274, 0.548376858234406, 0.0, 1.0 ],
 									"id" : "obj-8",
@@ -109,7 +124,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 424.0, 238.0, 122.0, 22.0 ],
 													"text" : "r 1155-ready-for-dicts",
-													"varname" : "maxmcpid-303"
+													"varname" : "maxmcpid-300"
 												}
 
 											}
@@ -162,7 +177,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 50.0, 428.0, 37.0, 22.0 ],
 																					"text" : "zl.rev",
-																					"varname" : "maxmcpid-302"
+																					"varname" : "maxmcpid-299"
 																				}
 
 																			}
@@ -175,7 +190,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 50.0, 496.0, 79.0, 22.0 ],
 																					"text" : "append bang",
-																					"varname" : "maxmcpid-301"
+																					"varname" : "maxmcpid-298"
 																				}
 
 																			}
@@ -188,7 +203,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 50.0, 465.0, 47.0, 22.0 ],
 																					"text" : "zl.iter 1",
-																					"varname" : "maxmcpid-300"
+																					"varname" : "maxmcpid-297"
 																				}
 
 																			}
@@ -201,7 +216,7 @@
 																					"outlettype" : [ "", "", "", "", "", "", "", "", "" ],
 																					"patching_rect" : [ 50.0, 529.0, 103.0, 22.0 ],
 																					"text" : "spray 9 1",
-																					"varname" : "maxmcpid-299"
+																					"varname" : "maxmcpid-296"
 																				}
 
 																			}
@@ -214,7 +229,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 50.0, 142.0, 29.5, 22.0 ],
 																					"text" : "$1",
-																					"varname" : "maxmcpid-298"
+																					"varname" : "maxmcpid-295"
 																				}
 
 																			}
@@ -227,7 +242,7 @@
 																					"outlettype" : [ "list" ],
 																					"patching_rect" : [ 50.0, 100.0, 103.0, 22.0 ],
 																					"text" : "funnel 9 1",
-																					"varname" : "maxmcpid-297"
+																					"varname" : "maxmcpid-294"
 																				}
 
 																			}
@@ -240,7 +255,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 50.0, 394.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-296"
+																					"varname" : "maxmcpid-293"
 																				}
 
 																			}
@@ -253,7 +268,7 @@
 																					"outlettype" : [ "int", "bang", "int" ],
 																					"patching_rect" : [ 50.0, 184.0, 91.0, 22.0 ],
 																					"text" : "t i b i",
-																					"varname" : "maxmcpid-295"
+																					"varname" : "maxmcpid-292"
 																				}
 
 																			}
@@ -266,7 +281,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 78.0, 272.0, 63.0, 22.0 ],
 																					"text" : "zl.filter",
-																					"varname" : "maxmcpid-294"
+																					"varname" : "maxmcpid-291"
 																				}
 
 																			}
@@ -279,7 +294,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 50.0, 318.0, 39.0, 22.0 ],
 																					"text" : "zl.join",
-																					"varname" : "maxmcpid-293"
+																					"varname" : "maxmcpid-290"
 																				}
 
 																			}
@@ -292,7 +307,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 78.0, 234.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-292"
+																					"varname" : "maxmcpid-289"
 																				}
 
 																			}
@@ -306,7 +321,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-291"
+																					"varname" : "maxmcpid-288"
 																				}
 
 																			}
@@ -320,7 +335,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "bang" ],
 																					"patching_rect" : [ 423.0, 40.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-290"
+																					"varname" : "maxmcpid-287"
 																				}
 
 																			}
@@ -334,7 +349,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 99.0, 40.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-289"
+																					"varname" : "maxmcpid-286"
 																				}
 
 																			}
@@ -348,7 +363,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 134.0, 40.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-288"
+																					"varname" : "maxmcpid-285"
 																				}
 
 																			}
@@ -362,7 +377,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 169.0, 40.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-287"
+																					"varname" : "maxmcpid-284"
 																				}
 
 																			}
@@ -376,7 +391,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 204.0, 40.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-286"
+																					"varname" : "maxmcpid-283"
 																				}
 
 																			}
@@ -390,7 +405,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 239.0, 40.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-285"
+																					"varname" : "maxmcpid-282"
 																				}
 
 																			}
@@ -404,7 +419,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 274.0, 40.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-284"
+																					"varname" : "maxmcpid-281"
 																				}
 
 																			}
@@ -418,7 +433,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 309.0, 40.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-283"
+																					"varname" : "maxmcpid-280"
 																				}
 
 																			}
@@ -432,7 +447,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 344.0, 40.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-282"
+																					"varname" : "maxmcpid-279"
 																				}
 
 																			}
@@ -445,7 +460,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 86.0, 606.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-281"
+																					"varname" : "maxmcpid-278"
 																				}
 
 																			}
@@ -458,7 +473,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 121.0, 606.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-280"
+																					"varname" : "maxmcpid-277"
 																				}
 
 																			}
@@ -471,7 +486,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 156.0, 606.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-279"
+																					"varname" : "maxmcpid-276"
 																				}
 
 																			}
@@ -484,7 +499,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 191.0, 606.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-278"
+																					"varname" : "maxmcpid-275"
 																				}
 
 																			}
@@ -497,7 +512,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 226.0, 606.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-277"
+																					"varname" : "maxmcpid-274"
 																				}
 
 																			}
@@ -510,7 +525,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 261.0, 606.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-276"
+																					"varname" : "maxmcpid-273"
 																				}
 
 																			}
@@ -523,7 +538,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 296.0, 606.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-275"
+																					"varname" : "maxmcpid-272"
 																				}
 
 																			}
@@ -536,7 +551,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 331.0, 606.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-274"
+																					"varname" : "maxmcpid-271"
 																				}
 
 																			}
@@ -549,7 +564,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 50.0, 606.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-273"
+																					"varname" : "maxmcpid-270"
 																				}
 
 																			}
@@ -782,12 +797,12 @@
 
 																			}
  ],
-																		"originid" : "pat-206"
+																		"originid" : "pat-668"
 																	}
 ,
 																	"patching_rect" : [ 783.25, 219.0, 113.5, 22.0 ],
 																	"text" : "p initializer-storage",
-																	"varname" : "maxmcpid-272"
+																	"varname" : "maxmcpid-269"
 																}
 
 															}
@@ -800,7 +815,7 @@
 																	"numinlets" : 1,
 																	"numoutlets" : 0,
 																	"patching_rect" : [ 110.5, 418.0, 30.0, 30.0 ],
-																	"varname" : "maxmcpid-271"
+																	"varname" : "maxmcpid-268"
 																}
 
 															}
@@ -813,7 +828,7 @@
 																	"outlettype" : [ "bang" ],
 																	"patching_rect" : [ 1016.0, 144.0, 22.0, 22.0 ],
 																	"text" : "t b",
-																	"varname" : "maxmcpid-270"
+																	"varname" : "maxmcpid-267"
 																}
 
 															}
@@ -827,7 +842,7 @@
 																	"numoutlets" : 1,
 																	"outlettype" : [ "" ],
 																	"patching_rect" : [ 1016.0, 21.0, 30.0, 30.0 ],
-																	"varname" : "maxmcpid-269"
+																	"varname" : "maxmcpid-266"
 																}
 
 															}
@@ -860,7 +875,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 122.0, 55.0, 22.0 ],
 																					"text" : "zl.slice 1",
-																					"varname" : "maxmcpid-268"
+																					"varname" : "maxmcpid-265"
 																				}
 
 																			}
@@ -873,7 +888,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 243.0, 335.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-267"
+																					"varname" : "maxmcpid-264"
 																				}
 
 																			}
@@ -887,7 +902,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 243.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-266"
+																					"varname" : "maxmcpid-263"
 																				}
 
 																			}
@@ -900,7 +915,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 243.0, 162.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-265"
+																					"varname" : "maxmcpid-262"
 																				}
 
 																			}
@@ -920,7 +935,7 @@
 																					}
 ,
 																					"text" : "dict",
-																					"varname" : "maxmcpid-264"
+																					"varname" : "maxmcpid-261"
 																				}
 
 																			}
@@ -933,7 +948,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 234.0, 86.0, 22.0 ],
 																					"text" : "prepend name",
-																					"varname" : "maxmcpid-263"
+																					"varname" : "maxmcpid-260"
 																				}
 
 																			}
@@ -946,7 +961,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 200.0, 91.0, 22.0 ],
 																					"text" : "route dictionary",
-																					"varname" : "maxmcpid-262"
+																					"varname" : "maxmcpid-259"
 																				}
 
 																			}
@@ -959,7 +974,7 @@
 																					"outlettype" : [ "", "", "" ],
 																					"patching_rect" : [ 98.0, 162.0, 111.0, 22.0 ],
 																					"text" : "route success error",
-																					"varname" : "maxmcpid-261"
+																					"varname" : "maxmcpid-258"
 																				}
 
 																			}
@@ -973,7 +988,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-260"
+																					"varname" : "maxmcpid-257"
 																				}
 
 																			}
@@ -1044,12 +1059,12 @@
 
 																			}
  ],
-																		"originid" : "pat-208"
+																		"originid" : "pat-670"
 																	}
 ,
 																	"patching_rect" : [ 727.5, 359.0, 71.0, 22.0 ],
 																	"text" : "p retain-dict",
-																	"varname" : "maxmcpid-259"
+																	"varname" : "maxmcpid-256"
 																}
 
 															}
@@ -1082,7 +1097,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 122.0, 55.0, 22.0 ],
 																					"text" : "zl.slice 1",
-																					"varname" : "maxmcpid-258"
+																					"varname" : "maxmcpid-255"
 																				}
 
 																			}
@@ -1095,7 +1110,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 243.0, 335.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-257"
+																					"varname" : "maxmcpid-254"
 																				}
 
 																			}
@@ -1109,7 +1124,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 243.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-256"
+																					"varname" : "maxmcpid-253"
 																				}
 
 																			}
@@ -1122,7 +1137,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 243.0, 162.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-255"
+																					"varname" : "maxmcpid-252"
 																				}
 
 																			}
@@ -1142,7 +1157,7 @@
 																					}
 ,
 																					"text" : "dict",
-																					"varname" : "maxmcpid-254"
+																					"varname" : "maxmcpid-251"
 																				}
 
 																			}
@@ -1155,7 +1170,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 234.0, 86.0, 22.0 ],
 																					"text" : "prepend name",
-																					"varname" : "maxmcpid-253"
+																					"varname" : "maxmcpid-250"
 																				}
 
 																			}
@@ -1168,7 +1183,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 200.0, 91.0, 22.0 ],
 																					"text" : "route dictionary",
-																					"varname" : "maxmcpid-252"
+																					"varname" : "maxmcpid-249"
 																				}
 
 																			}
@@ -1181,7 +1196,7 @@
 																					"outlettype" : [ "", "", "" ],
 																					"patching_rect" : [ 98.0, 162.0, 111.0, 22.0 ],
 																					"text" : "route success error",
-																					"varname" : "maxmcpid-251"
+																					"varname" : "maxmcpid-248"
 																				}
 
 																			}
@@ -1195,7 +1210,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-250"
+																					"varname" : "maxmcpid-247"
 																				}
 
 																			}
@@ -1266,12 +1281,12 @@
 
 																			}
  ],
-																		"originid" : "pat-210"
+																		"originid" : "pat-672"
 																	}
 ,
 																	"patching_rect" : [ 648.5, 359.0, 71.0, 22.0 ],
 																	"text" : "p retain-dict",
-																	"varname" : "maxmcpid-249"
+																	"varname" : "maxmcpid-246"
 																}
 
 															}
@@ -1304,7 +1319,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 122.0, 55.0, 22.0 ],
 																					"text" : "zl.slice 1",
-																					"varname" : "maxmcpid-248"
+																					"varname" : "maxmcpid-245"
 																				}
 
 																			}
@@ -1317,7 +1332,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 243.0, 335.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-247"
+																					"varname" : "maxmcpid-244"
 																				}
 
 																			}
@@ -1331,7 +1346,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 243.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-246"
+																					"varname" : "maxmcpid-243"
 																				}
 
 																			}
@@ -1344,7 +1359,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 243.0, 162.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-245"
+																					"varname" : "maxmcpid-242"
 																				}
 
 																			}
@@ -1364,7 +1379,7 @@
 																					}
 ,
 																					"text" : "dict",
-																					"varname" : "maxmcpid-244"
+																					"varname" : "maxmcpid-241"
 																				}
 
 																			}
@@ -1377,7 +1392,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 234.0, 86.0, 22.0 ],
 																					"text" : "prepend name",
-																					"varname" : "maxmcpid-243"
+																					"varname" : "maxmcpid-240"
 																				}
 
 																			}
@@ -1390,7 +1405,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 200.0, 91.0, 22.0 ],
 																					"text" : "route dictionary",
-																					"varname" : "maxmcpid-242"
+																					"varname" : "maxmcpid-239"
 																				}
 
 																			}
@@ -1403,7 +1418,7 @@
 																					"outlettype" : [ "", "", "" ],
 																					"patching_rect" : [ 98.0, 162.0, 111.0, 22.0 ],
 																					"text" : "route success error",
-																					"varname" : "maxmcpid-241"
+																					"varname" : "maxmcpid-238"
 																				}
 
 																			}
@@ -1417,7 +1432,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-240"
+																					"varname" : "maxmcpid-237"
 																				}
 
 																			}
@@ -1488,12 +1503,12 @@
 
 																			}
  ],
-																		"originid" : "pat-212"
+																		"originid" : "pat-674"
 																	}
 ,
 																	"patching_rect" : [ 568.5, 359.0, 71.0, 22.0 ],
 																	"text" : "p retain-dict",
-																	"varname" : "maxmcpid-239"
+																	"varname" : "maxmcpid-236"
 																}
 
 															}
@@ -1526,7 +1541,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 122.0, 55.0, 22.0 ],
 																					"text" : "zl.slice 1",
-																					"varname" : "maxmcpid-238"
+																					"varname" : "maxmcpid-235"
 																				}
 
 																			}
@@ -1539,7 +1554,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 243.0, 335.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-237"
+																					"varname" : "maxmcpid-234"
 																				}
 
 																			}
@@ -1553,7 +1568,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 243.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-236"
+																					"varname" : "maxmcpid-233"
 																				}
 
 																			}
@@ -1566,7 +1581,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 243.0, 162.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-235"
+																					"varname" : "maxmcpid-232"
 																				}
 
 																			}
@@ -1586,7 +1601,7 @@
 																					}
 ,
 																					"text" : "dict",
-																					"varname" : "maxmcpid-234"
+																					"varname" : "maxmcpid-231"
 																				}
 
 																			}
@@ -1599,7 +1614,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 234.0, 86.0, 22.0 ],
 																					"text" : "prepend name",
-																					"varname" : "maxmcpid-233"
+																					"varname" : "maxmcpid-230"
 																				}
 
 																			}
@@ -1612,7 +1627,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 200.0, 91.0, 22.0 ],
 																					"text" : "route dictionary",
-																					"varname" : "maxmcpid-232"
+																					"varname" : "maxmcpid-229"
 																				}
 
 																			}
@@ -1625,7 +1640,7 @@
 																					"outlettype" : [ "", "", "" ],
 																					"patching_rect" : [ 98.0, 162.0, 111.0, 22.0 ],
 																					"text" : "route success error",
-																					"varname" : "maxmcpid-231"
+																					"varname" : "maxmcpid-228"
 																				}
 
 																			}
@@ -1639,7 +1654,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-230"
+																					"varname" : "maxmcpid-227"
 																				}
 
 																			}
@@ -1710,12 +1725,12 @@
 
 																			}
  ],
-																		"originid" : "pat-214"
+																		"originid" : "pat-676"
 																	}
 ,
 																	"patching_rect" : [ 489.5, 359.0, 71.0, 22.0 ],
 																	"text" : "p retain-dict",
-																	"varname" : "maxmcpid-229"
+																	"varname" : "maxmcpid-226"
 																}
 
 															}
@@ -1748,7 +1763,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 122.0, 55.0, 22.0 ],
 																					"text" : "zl.slice 1",
-																					"varname" : "maxmcpid-228"
+																					"varname" : "maxmcpid-225"
 																				}
 
 																			}
@@ -1761,7 +1776,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 243.0, 335.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-227"
+																					"varname" : "maxmcpid-224"
 																				}
 
 																			}
@@ -1775,7 +1790,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 243.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-226"
+																					"varname" : "maxmcpid-223"
 																				}
 
 																			}
@@ -1788,7 +1803,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 243.0, 162.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-225"
+																					"varname" : "maxmcpid-222"
 																				}
 
 																			}
@@ -1808,7 +1823,7 @@
 																					}
 ,
 																					"text" : "dict",
-																					"varname" : "maxmcpid-224"
+																					"varname" : "maxmcpid-221"
 																				}
 
 																			}
@@ -1821,7 +1836,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 234.0, 86.0, 22.0 ],
 																					"text" : "prepend name",
-																					"varname" : "maxmcpid-223"
+																					"varname" : "maxmcpid-220"
 																				}
 
 																			}
@@ -1834,7 +1849,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 200.0, 91.0, 22.0 ],
 																					"text" : "route dictionary",
-																					"varname" : "maxmcpid-222"
+																					"varname" : "maxmcpid-219"
 																				}
 
 																			}
@@ -1847,7 +1862,7 @@
 																					"outlettype" : [ "", "", "" ],
 																					"patching_rect" : [ 98.0, 162.0, 111.0, 22.0 ],
 																					"text" : "route success error",
-																					"varname" : "maxmcpid-221"
+																					"varname" : "maxmcpid-218"
 																				}
 
 																			}
@@ -1861,7 +1876,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-220"
+																					"varname" : "maxmcpid-217"
 																				}
 
 																			}
@@ -1932,12 +1947,12 @@
 
 																			}
  ],
-																		"originid" : "pat-216"
+																		"originid" : "pat-678"
 																	}
 ,
 																	"patching_rect" : [ 412.5, 359.0, 71.0, 22.0 ],
 																	"text" : "p retain-dict",
-																	"varname" : "maxmcpid-219"
+																	"varname" : "maxmcpid-216"
 																}
 
 															}
@@ -1950,7 +1965,7 @@
 																	"numoutlets" : 0,
 																	"patching_rect" : [ 149.0, 21.0, 151.0, 47.0 ],
 																	"text" : "Threading and dicts go together like peanut butter and tomatoes",
-																	"varname" : "maxmcpid-218"
+																	"varname" : "maxmcpid-215"
 																}
 
 															}
@@ -1983,7 +1998,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 122.0, 55.0, 22.0 ],
 																					"text" : "zl.slice 1",
-																					"varname" : "maxmcpid-217"
+																					"varname" : "maxmcpid-214"
 																				}
 
 																			}
@@ -1996,7 +2011,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 243.0, 335.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-216"
+																					"varname" : "maxmcpid-213"
 																				}
 
 																			}
@@ -2010,7 +2025,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 243.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-215"
+																					"varname" : "maxmcpid-212"
 																				}
 
 																			}
@@ -2023,7 +2038,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 243.0, 162.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-214"
+																					"varname" : "maxmcpid-211"
 																				}
 
 																			}
@@ -2043,7 +2058,7 @@
 																					}
 ,
 																					"text" : "dict",
-																					"varname" : "maxmcpid-213"
+																					"varname" : "maxmcpid-210"
 																				}
 
 																			}
@@ -2056,7 +2071,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 234.0, 86.0, 22.0 ],
 																					"text" : "prepend name",
-																					"varname" : "maxmcpid-212"
+																					"varname" : "maxmcpid-209"
 																				}
 
 																			}
@@ -2069,7 +2084,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 200.0, 91.0, 22.0 ],
 																					"text" : "route dictionary",
-																					"varname" : "maxmcpid-211"
+																					"varname" : "maxmcpid-208"
 																				}
 
 																			}
@@ -2082,7 +2097,7 @@
 																					"outlettype" : [ "", "", "" ],
 																					"patching_rect" : [ 98.0, 162.0, 111.0, 22.0 ],
 																					"text" : "route success error",
-																					"varname" : "maxmcpid-210"
+																					"varname" : "maxmcpid-207"
 																				}
 
 																			}
@@ -2096,7 +2111,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-209"
+																					"varname" : "maxmcpid-206"
 																				}
 
 																			}
@@ -2167,12 +2182,12 @@
 
 																			}
  ],
-																		"originid" : "pat-218"
+																		"originid" : "pat-680"
 																	}
 ,
 																	"patching_rect" : [ 335.5, 359.0, 71.0, 22.0 ],
 																	"text" : "p retain-dict",
-																	"varname" : "maxmcpid-208"
+																	"varname" : "maxmcpid-205"
 																}
 
 															}
@@ -2205,7 +2220,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 122.0, 55.0, 22.0 ],
 																					"text" : "zl.slice 1",
-																					"varname" : "maxmcpid-207"
+																					"varname" : "maxmcpid-204"
 																				}
 
 																			}
@@ -2218,7 +2233,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 243.0, 335.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-206"
+																					"varname" : "maxmcpid-203"
 																				}
 
 																			}
@@ -2232,7 +2247,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 243.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-205"
+																					"varname" : "maxmcpid-202"
 																				}
 
 																			}
@@ -2245,7 +2260,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 243.0, 162.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-204"
+																					"varname" : "maxmcpid-201"
 																				}
 
 																			}
@@ -2265,7 +2280,7 @@
 																					}
 ,
 																					"text" : "dict",
-																					"varname" : "maxmcpid-203"
+																					"varname" : "maxmcpid-200"
 																				}
 
 																			}
@@ -2278,7 +2293,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 234.0, 86.0, 22.0 ],
 																					"text" : "prepend name",
-																					"varname" : "maxmcpid-202"
+																					"varname" : "maxmcpid-199"
 																				}
 
 																			}
@@ -2291,7 +2306,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 200.0, 91.0, 22.0 ],
 																					"text" : "route dictionary",
-																					"varname" : "maxmcpid-201"
+																					"varname" : "maxmcpid-198"
 																				}
 
 																			}
@@ -2304,7 +2319,7 @@
 																					"outlettype" : [ "", "", "" ],
 																					"patching_rect" : [ 98.0, 162.0, 111.0, 22.0 ],
 																					"text" : "route success error",
-																					"varname" : "maxmcpid-200"
+																					"varname" : "maxmcpid-197"
 																				}
 
 																			}
@@ -2318,7 +2333,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-199"
+																					"varname" : "maxmcpid-196"
 																				}
 
 																			}
@@ -2389,12 +2404,12 @@
 
 																			}
  ],
-																		"originid" : "pat-220"
+																		"originid" : "pat-682"
 																	}
 ,
 																	"patching_rect" : [ 260.5, 359.0, 71.0, 22.0 ],
 																	"text" : "p retain-dict",
-																	"varname" : "maxmcpid-198"
+																	"varname" : "maxmcpid-195"
 																}
 
 															}
@@ -2427,7 +2442,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 122.0, 55.0, 22.0 ],
 																					"text" : "zl.slice 1",
-																					"varname" : "maxmcpid-197"
+																					"varname" : "maxmcpid-194"
 																				}
 
 																			}
@@ -2440,7 +2455,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 243.0, 335.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-196"
+																					"varname" : "maxmcpid-193"
 																				}
 
 																			}
@@ -2454,7 +2469,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 243.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-195"
+																					"varname" : "maxmcpid-192"
 																				}
 
 																			}
@@ -2467,7 +2482,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 243.0, 162.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-194"
+																					"varname" : "maxmcpid-191"
 																				}
 
 																			}
@@ -2487,7 +2502,7 @@
 																					}
 ,
 																					"text" : "dict",
-																					"varname" : "maxmcpid-193"
+																					"varname" : "maxmcpid-190"
 																				}
 
 																			}
@@ -2500,7 +2515,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 234.0, 86.0, 22.0 ],
 																					"text" : "prepend name",
-																					"varname" : "maxmcpid-192"
+																					"varname" : "maxmcpid-189"
 																				}
 
 																			}
@@ -2513,7 +2528,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 200.0, 91.0, 22.0 ],
 																					"text" : "route dictionary",
-																					"varname" : "maxmcpid-191"
+																					"varname" : "maxmcpid-188"
 																				}
 
 																			}
@@ -2526,7 +2541,7 @@
 																					"outlettype" : [ "", "", "" ],
 																					"patching_rect" : [ 98.0, 162.0, 111.0, 22.0 ],
 																					"text" : "route success error",
-																					"varname" : "maxmcpid-190"
+																					"varname" : "maxmcpid-187"
 																				}
 
 																			}
@@ -2540,7 +2555,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-189"
+																					"varname" : "maxmcpid-186"
 																				}
 
 																			}
@@ -2611,12 +2626,12 @@
 
 																			}
  ],
-																		"originid" : "pat-222"
+																		"originid" : "pat-684"
 																	}
 ,
 																	"patching_rect" : [ 185.5, 359.0, 71.0, 22.0 ],
 																	"text" : "p retain-dict",
-																	"varname" : "maxmcpid-188"
+																	"varname" : "maxmcpid-185"
 																}
 
 															}
@@ -2649,7 +2664,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 122.0, 55.0, 22.0 ],
 																					"text" : "zl.slice 1",
-																					"varname" : "maxmcpid-187"
+																					"varname" : "maxmcpid-184"
 																				}
 
 																			}
@@ -2662,7 +2677,7 @@
 																					"numinlets" : 1,
 																					"numoutlets" : 0,
 																					"patching_rect" : [ 243.0, 335.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-186"
+																					"varname" : "maxmcpid-183"
 																				}
 
 																			}
@@ -2676,7 +2691,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 243.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-185"
+																					"varname" : "maxmcpid-182"
 																				}
 
 																			}
@@ -2689,7 +2704,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 243.0, 162.0, 38.0, 22.0 ],
 																					"text" : "zl.reg",
-																					"varname" : "maxmcpid-184"
+																					"varname" : "maxmcpid-181"
 																				}
 
 																			}
@@ -2709,7 +2724,7 @@
 																					}
 ,
 																					"text" : "dict",
-																					"varname" : "maxmcpid-183"
+																					"varname" : "maxmcpid-180"
 																				}
 
 																			}
@@ -2722,7 +2737,7 @@
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 234.0, 86.0, 22.0 ],
 																					"text" : "prepend name",
-																					"varname" : "maxmcpid-182"
+																					"varname" : "maxmcpid-179"
 																				}
 
 																			}
@@ -2735,7 +2750,7 @@
 																					"outlettype" : [ "", "" ],
 																					"patching_rect" : [ 98.0, 200.0, 91.0, 22.0 ],
 																					"text" : "route dictionary",
-																					"varname" : "maxmcpid-181"
+																					"varname" : "maxmcpid-178"
 																				}
 
 																			}
@@ -2748,7 +2763,7 @@
 																					"outlettype" : [ "", "", "" ],
 																					"patching_rect" : [ 98.0, 162.0, 111.0, 22.0 ],
 																					"text" : "route success error",
-																					"varname" : "maxmcpid-180"
+																					"varname" : "maxmcpid-177"
 																				}
 
 																			}
@@ -2762,7 +2777,7 @@
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 98.0, 48.0, 30.0, 30.0 ],
-																					"varname" : "maxmcpid-179"
+																					"varname" : "maxmcpid-176"
 																				}
 
 																			}
@@ -2833,12 +2848,12 @@
 
 																			}
  ],
-																		"originid" : "pat-224"
+																		"originid" : "pat-686"
 																	}
 ,
 																	"patching_rect" : [ 110.5, 359.0, 71.0, 22.0 ],
 																	"text" : "p retain-dict",
-																	"varname" : "maxmcpid-178"
+																	"varname" : "maxmcpid-175"
 																}
 
 															}
@@ -2852,7 +2867,7 @@
 																	"numoutlets" : 1,
 																	"outlettype" : [ "" ],
 																	"patching_rect" : [ 100.0, 21.0, 30.0, 30.0 ],
-																	"varname" : "maxmcpid-177"
+																	"varname" : "maxmcpid-174"
 																}
 
 															}
@@ -2865,7 +2880,7 @@
 																	"outlettype" : [ "", "", "", "", "", "", "", "", "", "" ],
 																	"patching_rect" : [ 110.5, 144.0, 490.0, 22.0 ],
 																	"text" : "routepass restarted start stop terminated processStatus npm status manager debug_break",
-																	"varname" : "maxmcpid-176"
+																	"varname" : "maxmcpid-173"
 																}
 
 															}
@@ -3162,12 +3177,12 @@
 
 															}
  ],
-														"originid" : "pat-204"
+														"originid" : "pat-666"
 													}
 ,
 													"patching_rect" : [ 330.0, 275.0, 113.0, 22.0 ],
 													"text" : "p retain-dictionaries",
-													"varname" : "maxmcpid-175"
+													"varname" : "maxmcpid-172"
 												}
 
 											}
@@ -3180,7 +3195,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 584.0, 321.0, 71.0, 22.0 ],
 													"text" : "r 1155-jweb",
-													"varname" : "maxmcpid-174"
+													"varname" : "maxmcpid-171"
 												}
 
 											}
@@ -3193,7 +3208,7 @@
 													"outlettype" : [ "", "" ],
 													"patching_rect" : [ 302.0, 238.0, 29.5, 22.0 ],
 													"text" : "t l l",
-													"varname" : "maxmcpid-173"
+													"varname" : "maxmcpid-170"
 												}
 
 											}
@@ -3206,7 +3221,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 376.0, 321.0, 198.0, 22.0 ],
 													"text" : "loadmess readfile n4m.monitor.html",
-													"varname" : "maxmcpid-172"
+													"varname" : "maxmcpid-169"
 												}
 
 											}
@@ -3219,7 +3234,7 @@
 													"outlettype" : [ "", "" ],
 													"patching_rect" : [ 298.0, 183.0, 79.0, 22.0 ],
 													"text" : "route running",
-													"varname" : "maxmcpid-171"
+													"varname" : "maxmcpid-168"
 												}
 
 											}
@@ -3232,7 +3247,7 @@
 													"outlettype" : [ "", "" ],
 													"patching_rect" : [ 50.0, 211.0, 60.0, 22.0 ],
 													"text" : "route port",
-													"varname" : "maxmcpid-170"
+													"varname" : "maxmcpid-167"
 												}
 
 											}
@@ -3245,7 +3260,7 @@
 													"outlettype" : [ "", "" ],
 													"patching_rect" : [ 189.0, 183.0, 92.0, 22.0 ],
 													"text" : "route command",
-													"varname" : "maxmcpid-169"
+													"varname" : "maxmcpid-166"
 												}
 
 											}
@@ -3274,7 +3289,7 @@
 														"autowatch" : 1
 													}
 ,
-													"varname" : "maxmcpid-168"
+													"varname" : "maxmcpid-165"
 												}
 
 											}
@@ -3287,7 +3302,7 @@
 													"outlettype" : [ "", "" ],
 													"patching_rect" : [ 93.0, 183.0, 79.0, 22.0 ],
 													"text" : "route request",
-													"varname" : "maxmcpid-167"
+													"varname" : "maxmcpid-164"
 												}
 
 											}
@@ -3301,7 +3316,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 115.0, 40.0, 30.0, 30.0 ],
-													"varname" : "maxmcpid-166"
+													"varname" : "maxmcpid-163"
 												}
 
 											}
@@ -3314,7 +3329,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 243.0, 435.0, 30.0, 30.0 ],
-													"varname" : "maxmcpid-165"
+													"varname" : "maxmcpid-162"
 												}
 
 											}
@@ -3327,7 +3342,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 322.5, 423.0, 30.0, 30.0 ],
-													"varname" : "maxmcpid-164"
+													"varname" : "maxmcpid-161"
 												}
 
 											}
@@ -3340,7 +3355,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 0,
 													"patching_rect" : [ 102.0, 423.0, 30.0, 30.0 ],
-													"varname" : "maxmcpid-163"
+													"varname" : "maxmcpid-160"
 												}
 
 											}
@@ -3454,12 +3469,12 @@
 
 											}
  ],
-										"originid" : "pat-202"
+										"originid" : "pat-664"
 									}
 ,
-									"patching_rect" : [ 437.0, 219.0, 103.0, 22.0 ],
+									"patching_rect" : [ 755.0, 198.0, 103.0, 22.0 ],
 									"text" : "p MaxMSP-Agent",
-									"varname" : "maxmcpid-162"
+									"varname" : "maxmcpid-159"
 								}
 
 							}
@@ -3472,7 +3487,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 626.0, 254.0, 155.0, 22.0 ],
+									"patching_rect" : [ 816.0, 235.0, 155.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"parameter_enable" : 0
 									}
@@ -3485,7 +3500,7 @@
 										"autowatch" : 1
 									}
 ,
-									"varname" : "maxmcpid-161"
+									"varname" : "maxmcpid-158"
 								}
 
 							}
@@ -3516,7 +3531,7 @@
 													"numoutlets" : 0,
 													"patching_rect" : [ 400.0, 176.5, 124.0, 22.0 ],
 													"text" : "s 1155-ready-for-dicts",
-													"varname" : "maxmcpid-160"
+													"varname" : "maxmcpid-157"
 												}
 
 											}
@@ -3529,7 +3544,7 @@
 													"outlettype" : [ "bang", "bang" ],
 													"patching_rect" : [ 351.0, 141.5, 62.0, 22.0 ],
 													"text" : "bangbang",
-													"varname" : "maxmcpid-159"
+													"varname" : "maxmcpid-156"
 												}
 
 											}
@@ -3543,7 +3558,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 164.0, 165.0, 134.0, 35.0 ],
 													"text" : ";\rmax openfilefront $1 $2",
-													"varname" : "maxmcpid-158"
+													"varname" : "maxmcpid-155"
 												}
 
 											}
@@ -3556,7 +3571,7 @@
 													"outlettype" : [ "", "", "", "" ],
 													"patching_rect" : [ 50.0, 100.0, 161.0, 22.0 ],
 													"text" : "route reveal open onloadend",
-													"varname" : "maxmcpid-157"
+													"varname" : "maxmcpid-154"
 												}
 
 											}
@@ -3570,7 +3585,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 50.0, 165.0, 84.0, 35.0 ],
 													"text" : ";\rmax reveal $1",
-													"varname" : "maxmcpid-156"
+													"varname" : "maxmcpid-153"
 												}
 
 											}
@@ -3584,7 +3599,7 @@
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ],
-													"varname" : "maxmcpid-155"
+													"varname" : "maxmcpid-152"
 												}
 
 											}
@@ -3625,43 +3640,44 @@
 
 											}
  ],
-										"originid" : "pat-226"
+										"originid" : "pat-688"
 									}
 ,
-									"patching_rect" : [ 437.0, 573.0, 46.0, 22.0 ],
+									"patching_rect" : [ 755.0, 546.0, 46.0, 22.0 ],
 									"text" : "p other",
-									"varname" : "maxmcpid-154"
+									"varname" : "maxmcpid-151"
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"bubble" : 1,
-									"bubblepoint" : 0.25,
+									"bubblepoint" : 0.0,
 									"bubbleside" : 2,
 									"fontface" : 0,
 									"id" : "obj-14",
-									"linecount" : 3,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 631.0, 61.0, 206.0, 66.0 ],
+									"patching_rect" : [ 900.0, 28.0, 134.0, 93.0 ],
 									"text" : "Change a port when necessary. The port number need to match the port number in the server.py file",
-									"varname" : "maxmcpid-153"
+									"varname" : "maxmcpid-150"
 								}
 
 							}
 , 							{
 								"box" : 								{
 									"bubble" : 1,
+									"bubblepoint" : 0.2,
+									"bubbleside" : 2,
 									"id" : "obj-13",
-									"linecount" : 2,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 515.0, 47.0, 84.0, 37.0 ],
-									"text" : "Start the server",
-									"varname" : "maxmcpid-152"
+									"patching_rect" : [ 761.0, 28.0, 124.0, 39.0 ],
+									"text" : "Start/stop the server",
+									"varname" : "maxmcpid-149"
 								}
 
 							}
@@ -3671,9 +3687,9 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 479.0, 289.0, 159.0, 22.0 ],
+									"patching_rect" : [ 797.0, 268.0, 159.0, 22.0 ],
 									"text" : "print port-number @popup 1",
-									"varname" : "maxmcpid-151"
+									"varname" : "maxmcpid-148"
 								}
 
 							}
@@ -3684,47 +3700,9 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 631.0, 133.0, 59.0, 22.0 ],
+									"patching_rect" : [ 899.0, 134.0, 59.0, 22.0 ],
 									"text" : "port 5002",
-									"varname" : "maxmcpid-150"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-19",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 96.0, 253.0, 35.0, 22.0 ],
-									"text" : "dac~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"attr" : "phase",
-									"id" : "obj-50",
-									"maxclass" : "attrui",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"parameter_enable" : 0,
-									"patching_rect" : [ 96.0, 136.0, 150.0, 22.0 ],
-									"varname" : "obj-1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-23",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 96.0, 186.0, 66.0, 22.0 ],
-									"text" : "cycle~ 440",
-									"varname" : "obj-0"
+									"varname" : "maxmcpid-147"
 								}
 
 							}
@@ -3735,7 +3713,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 456.0, 94.0, 65.0, 22.0 ],
+									"patching_rect" : [ 774.0, 111.0, 65.0, 22.0 ],
 									"text" : "script stop",
 									"varname" : "maxmcpid-146"
 								}
@@ -3748,7 +3726,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 437.0, 55.0, 66.0, 22.0 ],
+									"patching_rect" : [ 755.0, 78.0, 66.0, 22.0 ],
 									"text" : "script start",
 									"varname" : "maxmcpid-145"
 								}
@@ -3760,9 +3738,9 @@
 									"id" : "obj-7",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 560.0, 220.0, 85.0, 22.0 ],
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "" ],
+									"patching_rect" : [ 886.0, 198.0, 85.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"filename" : "max_mcp.js",
 										"parameter_enable" : 0
@@ -3781,7 +3759,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 437.0, 325.0, 400.0, 220.0 ],
+									"patching_rect" : [ 755.0, 304.0, 277.0, 220.0 ],
 									"rendermode" : 0,
 									"url" : "file://n4m.monitor.html",
 									"varname" : "maxmcpid-143"
@@ -3798,13 +3776,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-19", 0 ],
-									"source" : [ "obj-23", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
 									"source" : [ "obj-28", 0 ]
 								}
@@ -3813,7 +3784,7 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-8", 0 ],
-									"midpoints" : [ 771.5, 277.0, 791.0, 277.0, 791.0, 205.0, 446.5, 205.0 ],
+									"midpoints" : [ 961.5, 260.0, 982.0, 260.0, 982.0, 185.0, 764.5, 185.0 ],
 									"source" : [ "obj-3", 1 ]
 								}
 
@@ -3834,14 +3805,16 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-23", 0 ],
-									"source" : [ "obj-50", 0 ]
+									"destination" : [ "obj-3", 0 ],
+									"midpoints" : [ 961.5, 226.92578125, 825.5, 226.92578125 ],
+									"source" : [ "obj-7", 2 ]
 								}
 
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-3", 0 ],
+									"destination" : [ "obj-8", 0 ],
+									"midpoints" : [ 928.5, 228.6796875, 981.15234375, 228.6796875, 981.15234375, 185.0, 764.5, 185.0 ],
 									"source" : [ "obj-7", 1 ]
 								}
 
@@ -3863,13 +3836,13 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-7", 0 ],
-									"midpoints" : [ 530.5, 244.0, 557.0, 244.0, 557.0, 217.0, 569.5, 217.0 ],
+									"midpoints" : [ 848.5, 226.33203125, 875.0, 226.33203125, 875.0, 196.0, 895.5, 196.0 ],
 									"source" : [ "obj-8", 2 ]
 								}
 
 							}
  ],
-						"originid" : "pat-200"
+						"originid" : "pat-662"
 					}
 ,
 					"patching_rect" : [ 147.0, 117.0, 101.0, 22.0 ],
@@ -3895,10 +3868,23 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 852.0, 685.0 ],
+						"rect" : [ 0.0, 26.0, 1041.0, 647.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"linecount" : 3,
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 42.0, 41.0, 372.0, 47.0 ],
+									"text" : "The communication between Max and MCP is through Socket.IO. Therefore, we'll need to install a few Node for Max modules with npm. ",
+									"varname" : "maxmcpid-2[1]"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-6",
 									"maxclass" : "newobj",
@@ -4600,7 +4586,7 @@
 
 																			}
  ],
-																		"originid" : "pat-234"
+																		"originid" : "pat-696"
 																	}
 ,
 																	"patching_rect" : [ 783.25, 219.0, 113.5, 22.0 ],
@@ -4862,7 +4848,7 @@
 
 																			}
  ],
-																		"originid" : "pat-236"
+																		"originid" : "pat-698"
 																	}
 ,
 																	"patching_rect" : [ 727.5, 359.0, 71.0, 22.0 ],
@@ -5084,7 +5070,7 @@
 
 																			}
  ],
-																		"originid" : "pat-238"
+																		"originid" : "pat-700"
 																	}
 ,
 																	"patching_rect" : [ 648.5, 359.0, 71.0, 22.0 ],
@@ -5306,7 +5292,7 @@
 
 																			}
  ],
-																		"originid" : "pat-240"
+																		"originid" : "pat-702"
 																	}
 ,
 																	"patching_rect" : [ 568.5, 359.0, 71.0, 22.0 ],
@@ -5528,7 +5514,7 @@
 
 																			}
  ],
-																		"originid" : "pat-242"
+																		"originid" : "pat-704"
 																	}
 ,
 																	"patching_rect" : [ 489.5, 359.0, 71.0, 22.0 ],
@@ -5750,7 +5736,7 @@
 
 																			}
  ],
-																		"originid" : "pat-244"
+																		"originid" : "pat-706"
 																	}
 ,
 																	"patching_rect" : [ 412.5, 359.0, 71.0, 22.0 ],
@@ -5985,7 +5971,7 @@
 
 																			}
  ],
-																		"originid" : "pat-246"
+																		"originid" : "pat-708"
 																	}
 ,
 																	"patching_rect" : [ 335.5, 359.0, 71.0, 22.0 ],
@@ -6207,7 +6193,7 @@
 
 																			}
  ],
-																		"originid" : "pat-248"
+																		"originid" : "pat-710"
 																	}
 ,
 																	"patching_rect" : [ 260.5, 359.0, 71.0, 22.0 ],
@@ -6429,7 +6415,7 @@
 
 																			}
  ],
-																		"originid" : "pat-250"
+																		"originid" : "pat-712"
 																	}
 ,
 																	"patching_rect" : [ 185.5, 359.0, 71.0, 22.0 ],
@@ -6651,7 +6637,7 @@
 
 																			}
  ],
-																		"originid" : "pat-252"
+																		"originid" : "pat-714"
 																	}
 ,
 																	"patching_rect" : [ 110.5, 359.0, 71.0, 22.0 ],
@@ -6980,7 +6966,7 @@
 
 															}
  ],
-														"originid" : "pat-232"
+														"originid" : "pat-694"
 													}
 ,
 													"patching_rect" : [ 78.0, 137.0, 113.0, 22.0 ],
@@ -7106,10 +7092,10 @@
 
 											}
  ],
-										"originid" : "pat-230"
+										"originid" : "pat-692"
 									}
 ,
-									"patching_rect" : [ 209.0, 225.0, 75.0, 22.0 ],
+									"patching_rect" : [ 232.0, 269.0, 75.0, 22.0 ],
 									"text" : "p debug-tool",
 									"varname" : "maxmcpid-7"
 								}
@@ -7123,7 +7109,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 209.0, 279.0, 400.0, 220.0 ],
+									"patching_rect" : [ 232.0, 300.0, 400.0, 220.0 ],
 									"rendermode" : 0,
 									"url" : "file://n4m.monitor.html",
 									"varname" : "maxmcpid-6"
@@ -7137,7 +7123,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 60.0, 69.0, 126.0, 33.0 ],
+									"patching_rect" : [ 42.0, 163.0, 86.0, 33.0 ],
 									"text" : "Check npm installation",
 									"varname" : "maxmcpid-5"
 								}
@@ -7150,7 +7136,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 60.0, 104.0, 106.0, 22.0 ],
+									"patching_rect" : [ 42.0, 198.0, 106.0, 22.0 ],
 									"text" : "script npm version",
 									"varname" : "maxmcpid-4"
 								}
@@ -7163,7 +7149,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 199.0, 104.0, 98.0, 22.0 ],
+									"patching_rect" : [ 181.0, 198.0, 98.0, 22.0 ],
 									"text" : "script npm install",
 									"varname" : "maxmcpid-3"
 								}
@@ -7176,7 +7162,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 202.0, 69.0, 259.0, 33.0 ],
+									"patching_rect" : [ 184.0, 163.0, 222.0, 33.0 ],
 									"text" : "Install all dependencies declared in the package.json file",
 									"varname" : "maxmcpid-2"
 								}
@@ -7189,7 +7175,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 60.0, 166.0, 168.0, 22.0 ],
+									"patching_rect" : [ 42.0, 244.0, 168.0, 22.0 ],
 									"saved_object_attributes" : 									{
 										"autostart" : 0,
 										"defer" : 0,
@@ -7240,7 +7226,7 @@
 
 							}
  ],
-						"originid" : "pat-228"
+						"originid" : "pat-690"
 					}
 ,
 					"patching_rect" : [ 62.0, 104.0, 49.0, 22.0 ],
@@ -7265,24 +7251,24 @@
 
 			}
  ],
-		"originid" : "pat-198",
+		"originid" : "pat-660",
 		"dependency_cache" : [ 			{
 				"name" : "max_mcp.js",
-				"bootpath" : "~/PhD/25_05_max_mcp/MaxMSP-MCP/MaxMSP_Agent",
+				"bootpath" : "~/PhD/25_05_max_mcp/MaxMSP-MCP-Server/MaxMSP_Agent",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "max_mcp_node.js",
-				"bootpath" : "~/PhD/25_05_max_mcp/MaxMSP-MCP/MaxMSP_Agent",
+				"bootpath" : "~/PhD/25_05_max_mcp/MaxMSP-MCP-Server/MaxMSP_Agent",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "max_mcp_v8_add_on.js",
-				"bootpath" : "~/PhD/25_05_max_mcp/MaxMSP-MCP/MaxMSP_Agent",
+				"bootpath" : "~/PhD/25_05_max_mcp/MaxMSP-MCP-Server/MaxMSP_Agent",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1

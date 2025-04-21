@@ -28,9 +28,7 @@ io_server_started = False
 
 class MaxMSPConnection:
     def __init__(self, server_url: str, server_port: int, namespace: str = NAMESPACE):
-        # from pythonosc.udp_client import SimpleUDPClient
-        # from pythonosc.dispatcher import Dispatcher
-        
+
         self.server_url = server_url
         self.server_port = server_port
         self.namespace = namespace
@@ -47,19 +45,16 @@ class MaxMSPConnection:
 
     async def send_command(self, cmd: dict):
         """Send a command to MaxMSP."""
-        # self.sock.send_message("/mcp", json.dumps(cmd))
         await self.sio.emit("command", cmd, namespace=self.namespace)
         logging.info(f"Sent to MaxMSP: {cmd}")
 
     async def send_request(self, payload: dict, timeout = 2.0):
         """Send a fetch request to MaxMSP."""
         request_id = str(uuid.uuid4())
-        # future = self.loop.create_future()
         future = asyncio.get_event_loop().create_future()
         self._pending[request_id] = future
 
         payload.update({"request_id": request_id})
-        # self.sock.send_message("/mcp", json.dumps(payload))
         await self.sio.emit("request", payload, namespace=self.namespace)
         logging.info(f"Request to MaxMSP: {payload}")
 
@@ -80,8 +75,6 @@ class MaxMSPConnection:
             full_url = f"{self.server_url}:{self.server_port}"
             await self.sio.connect(full_url, namespaces=self.namespace)
             logging.info(f"Connected to Socket.IO server at {full_url}")
-            # Log a warning if we had to use an alternate port
-            # logging.warning(f"Make sure that Max is sending to port {self.feedback_port}")
             return
             
         except OSError as e:
@@ -99,8 +92,6 @@ async def server_lifespan(server: FastMCP):
                 await maxmsp.start_server()
                 io_server_started = True
                 
-                # if maxmsp.feedback_port != MAXMSP_FEEDBACK_PORT:
-                #     logging.warning(f"Make sure Max is configured to send to port {maxmsp.feedback_port}")
                 logging.info(f"Listening on {maxmsp.server_url}:{maxmsp.server_port}")
             
                 # Yield the Socket.IO connection to make it available in the lifespan context
@@ -116,17 +107,6 @@ async def server_lifespan(server: FastMCP):
             pass
     else:
         logging.info(f"IO server already running on {maxmsp.server_url}:{maxmsp.server_port}")
-
-# def on_notify(address: str, *args: Any) -> None:
-#     """Handle feedback messages from Max and notify MCP.
-
-#     Args:
-#         address: The OSC address received
-#         args: The arguments sent with the OSC message
-#     """
-    
-#     logging.info(f"Received feedback from: {address}")
-#     logging.info(f"Content: {args}")
 
 
 # Create the MCP server with lifespan support
@@ -145,6 +125,10 @@ async def add_max_object(
     args: list,
 ):
     """Add a new Max object.
+
+    The position is is a list of two integers representing the x and y coordinates, 
+    which should be outside the rectangular area returned by get_avoid_rect_position() function.
+    
     Args:
         position (list): Position in the Max patch as [x, y].
         obj_type (str): Type of the Max object (e.g., "cycle~", "dac~").
@@ -233,6 +217,117 @@ async def disconnect_max_objects(
     cmd.update(kwargs)
     await maxmsp.send_command(cmd)
 
+@mcp.tool()
+async def set_object_attribute(
+    ctx: Context,
+    varname: str,
+    attr_name: str,
+    attr_value: list,
+):
+    """Set an attribute of a Max object.
+    Args:
+        varname (str): Variable name of the object.
+        attr_name (str): Name of the attribute to be set.
+        attr_value (list): Values of the attribute to be set.
+    """
+    maxmsp = ctx.request_context.lifespan_context.get("maxmsp")
+    cmd = {"action": "set_object_attribute"}
+    kwargs = {
+        "varname": varname,
+        "attr_name": attr_name,
+        "attr_value": attr_value
+    }
+    cmd.update(kwargs)
+    await maxmsp.send_command(cmd)
+
+@mcp.tool()
+async def set_message_text(
+    ctx: Context,
+    varname: str,
+    text_list: list,
+):
+    """Set the text of a message object in MaxMSP.
+    Args:
+        varname (str): Variable name of the message object.
+        text_list (list): A list of arguments to be set to the message object.
+    """
+    maxmsp = ctx.request_context.lifespan_context.get("maxmsp")
+    cmd = {"action": "set_message_text"}
+    kwargs = {
+        "varname": varname,
+        "new_text": text_list
+    }
+    cmd.update(kwargs)
+    await maxmsp.send_command(cmd)
+
+@mcp.tool()
+async def send_bang_to_object(
+    ctx: Context,
+    varname: str
+):
+    """Send a bang to an object in MaxMSP.
+    Args:
+        varname (str): Variable name of the object to be banged.
+    """
+    maxmsp = ctx.request_context.lifespan_context.get("maxmsp")
+    cmd = {"action": "send_bang_to_object"}
+    kwargs = {
+        "varname": varname
+    }
+    cmd.update(kwargs)
+    await maxmsp.send_command(cmd)
+
+@mcp.tool()
+async def send_messages_to_object(
+    ctx: Context,
+    varname: str,
+    message: list,
+):
+    """Send a message to an object in MaxMSP. The message is made of a list of arguments.
+
+    When using message to set attributes, one attribute can only be set by one message.
+    For example, to set the "size" attribute of a "button" object, use:
+    send_messages_to_object("button1", ["size", 100, 100])
+    To set the "size" and "color" attributes of a "button" object, use the tool for two times:
+    send_messages_to_object("button1", ["size", 100, 100])
+    send_messages_to_object("button1", ["color", 0, 0, 0])
+
+    Args:
+        varname (str): Variable name of the object to be messaged.
+        message (list): A list of messages to be sent to the object.
+    """
+    maxmsp = ctx.request_context.lifespan_context.get("maxmsp")
+    cmd = {"action": "send_message_to_object"}
+    kwargs = {
+        "varname": varname,
+        "message": message
+    }
+    cmd.update(kwargs)
+    await maxmsp.send_command(cmd)
+
+@mcp.tool()
+async def set_number(
+    ctx: Context,
+    varname: str,
+    num: float,
+):
+    """Set the value of a object in MaxMSP.
+    The object can be a number box, a slider, a dial, a gain.
+
+    Args:
+        varname (str): Variable name of the comment object.
+        num (float): Value to be set for the object.
+    """
+
+    maxmsp = ctx.request_context.lifespan_context.get("maxmsp")
+    cmd = {"action": "set_number"}
+    kwargs = {
+        "varname": varname,
+        "num": num
+    }
+    cmd.update(kwargs)
+    await maxmsp.send_command(cmd)
+
 
 @mcp.tool()
 def list_all_objects(ctx: Context) -> list:
@@ -296,6 +391,45 @@ async def get_objects_in_selected(
     response = await maxmsp.send_request(payload)
 
     return [response]
+
+@mcp.tool()
+async def get_object_attributes(
+    ctx: Context,
+    varname: str
+):
+    """Retrieve an objects' attributes and values of the attributes.
+    
+    Use this to understand the state of an object.
+
+    Returns:
+        list: A list of attributes name and attributes values.
+    """
+    maxmsp = ctx.request_context.lifespan_context.get("maxmsp")
+    payload = {"action": "get_object_attributes"}
+    kwargs = {
+        "varname": varname
+    }
+    payload.update(kwargs)
+    response = await maxmsp.send_request(payload)
+
+    return [response]
+
+@mcp.tool()
+async def get_avoid_rect_position(
+    ctx: Context
+):
+    """When deciding the position to add a new object to the path, this rectangular area
+    should be avoid. This is useful when you want to add an object to the patch without 
+    overlapping with existing objects.
+
+    Returns:
+        list: A list of four numbers representing the left, top, right, bottom of the rectangular area.
+    """
+    maxmsp = ctx.request_context.lifespan_context.get("maxmsp")
+    payload = {"action": "get_avoid_rect_position"}
+    response = await maxmsp.send_request(payload)
+
+    return response
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 
 autowatch = 1; // 1
 inlets = 1; // Receive network messages here
-outlets = 2; // For status, responses, etc.
+outlets = 3; // For status, responses, etc.
 
 var p = this.patcher
 var obj_count = 0;
@@ -18,10 +18,10 @@ function safe_parse_json(str) {
 }
 
 function split_long_string(inString, maxLength) {
-    var longString = inString.replace(/\s+/g, "");
+    // var longString = inString.replace(/\s+/g, "");
     var result = [];
-    for (var i = 0; i < longString.length; i += maxLength) {
-        result.push(longString.substring(i, i + maxLength));
+    for (var i = 0; i < inString.length; i += maxLength) {
+        result.push(inString.substring(i, i + maxLength));
     }
     return result;
 }
@@ -54,6 +54,18 @@ function anything() {
                 outlet(0, "error", "Missing request_id for get_objects_in_selected");
             }
             break;
+        case "get_object_attributes":
+            if (data.request_id && data.varname) {
+                get_object_attributes(data.request_id, data.varname);
+            } else {
+                outlet(0, "error", "Missing request_id or varname for get_object_attributes");
+            }
+            break;
+        case "get_avoid_rect_position":
+            if (data.request_id) {
+                get_avoid_rect_position(data.request_id);
+            }
+            break;
         case "add_object":
             if (data.obj_type && data.position && data.varname) {
                 add_object(data.position[0], data.position[1], data.obj_type, data.args, data.varname);
@@ -70,16 +82,43 @@ function anything() {
             break;
         case "connect_objects":
             if (data.src_varname && data.dst_varname) {
-                connect_objects(data.src_varname, data.outlet_idx || 0, data.dst_varname, data.inlet_index || 0);
+                connect_objects(data.src_varname, data.outlet_idx || 0, data.dst_varname, data.inlet_idx || 0);
             } else {
                 outlet(0, "error", "Missing src_varname or dst_varname for connect_objects");
             }
             break;
         case "disconnect_objects":
             if (data.src_varname && data.dst_varname) {
-                disconnect_objects(data.src_varname, data.outlet_idx || 0, data.dst_varname, data.inlet_index || 0);
+                disconnect_objects(data.src_varname, data.outlet_idx || 0, data.dst_varname, data.inlet_idx || 0);
             } else {
                 outlet(0, "error", "Missing src_varname or dst_varname for disconnect_objects");
+            }
+            break;
+        case "set_object_attribute":
+            if (data.varname && data.attr_name && data.attr_value) {
+                set_object_attribute(data.varname, data.attr_name, data.attr_value);
+            } else {
+                outlet(0, "error", "Missing varname or attr_name for attr_value");
+            }
+            break;
+        case "set_message_text":
+            if (data.varname && data.new_text) {
+                set_message_text(data.varname, data.new_text);
+            }
+            break;
+        case "send_message_to_object":
+            if (data.varname && data.message) {
+                send_message_to_object(data.varname, data.message);
+            }
+            break;
+        case "send_bang_to_object":
+            if (data.varname) {
+                send_bang_to_object(data.varname);
+            }
+            break;
+        case "set_number":
+            if (data.varname && data.num) {
+                set_number(data.varname, data.num);
             }
             break;
         default:
@@ -95,11 +134,16 @@ function anything() {
 function add_object(x, y, type, args, var_name) {
     var new_obj = p.newdefault(x, y, type, args);
     new_obj.varname = var_name;
+    if (type == "message" || type == "comment" || type == "flonum") {
+        new_obj.message("set", args);
+    }
 }
 
 function remove_object(var_name) {
 	var obj = p.getnamed(var_name);
-	p.remove(obj);
+    if (obj) {
+	    p.remove(obj);
+    }
 }
 
 function connect_objects(src_varname, outlet_idx, dst_varname, inlet_idx) {
@@ -112,6 +156,80 @@ function disconnect_objects(src_varname, outlet_idx, dst_varname, inlet_idx) {
 	var src = p.getnamed(src_varname);
     var dst = p.getnamed(dst_varname);
 	p.disconnect(src, outlet_idx, dst, inlet_idx);
+}
+
+function set_object_attribute(varname, attr_name, attr_value) {
+    var obj = p.getnamed(varname);
+    if (obj) {
+        if (obj.maxclass == "message" || obj.maxclass == "comment") {
+            if (attr_name == "text") {
+                obj.message("set", attr_value);
+            }
+        }
+        // Check if the attribute exists before setting it
+        var attrnames = obj.getattrnames();
+        if (attrnames.indexOf(attr_name) == -1) {
+            post("Attribute not found: " + attr_name);
+            return;
+        }
+        // Set the attribute
+        obj.setattr(attr_name, attr_value);
+    } else {
+        post("Object not found: " + varname);
+    }
+}
+
+function set_message_text(varname, new_text) {
+    var obj = p.getnamed(varname);
+    if (obj) {
+        if (obj.maxclass == "message") {
+            obj.message("set", new_text);
+        } else {
+            post("Object is not a message box: " + varname);
+        }
+    } else {
+        post("Object not found: " + varname);
+    }
+}
+
+function send_message_to_object(varname, message) {
+    var obj = p.getnamed(varname);
+    if (obj) {
+        obj.message(message);
+    } else {
+        post("Object not found: " + varname);
+    }
+}
+
+function send_bang_to_object(varname) {
+    var obj = p.getnamed(varname);
+    if (obj) {
+        obj.message("bang");
+    } else {
+        post("Object not found: " + varname);
+    }
+}
+
+function set_text_in_comment(varname, text) {
+    var obj = p.getnamed(varname);
+    if (obj) {
+        if (obj.maxclass == "comment") {
+            obj.message("set", text);
+        } else {
+            post("Object is not a comment box: " + varname);
+        }
+    } else {
+        post("Object not found: " + varname);
+    }
+}
+
+function set_number(varname, num) {
+    var obj = p.getnamed(varname);
+    if (obj) {
+        obj.message("set", num);
+    } else {
+        post("Object not found: " + varname);
+    }
 }
 
 // ========================================
@@ -134,7 +252,7 @@ function get_objects_in_patch(request_id) {
     // outlet(1, "response", split_long_string(JSON.stringify(results, null, 2), 2000));
 
     // use this if has v8:
-    outlet(1, "add_boxtext", request_id, JSON.stringify(patcher_dict, null, 0));
+    outlet(2, "add_boxtext", request_id, JSON.stringify(patcher_dict, null, 0));
 }
 
 function get_objects_in_selected(request_id) {
@@ -156,7 +274,7 @@ function get_objects_in_selected(request_id) {
     // outlet(1, "response", split_long_string(JSON.stringify(results, null, 2), 2000));
 
     // use this if has v8:
-    outlet(1, "add_boxtext", request_id, JSON.stringify(patcher_dict, null, 0));
+    outlet(2, "add_boxtext", request_id, JSON.stringify(patcher_dict, null, 0));
 }
 
 function collect_objects(obj) {
@@ -198,8 +316,67 @@ function collect_objects(obj) {
     }})
 }
 
+function get_object_attributes(request_id, var_name) {
+    
+	var p = this.patcher
+    var obj = p.getnamed(var_name);
+    if (!obj) {
+        post("Object not found: " + var_name);
+	    return;
+    }
+    var attrnames = obj.getattrnames();
+    var attributes = {};
+    if (attrnames.length){
+        for (var i = 0; i < attrnames.length; i++) {
+            var name = attrnames[i];
+            var value = obj.getattr(name);
+            attributes[name] = value;
+        }
+    }
 
+    // use these if no v8:
+    // var results = {"request_id": request_id, "results": patcher_dict}
+    // outlet(1, "response", split_long_string(JSON.stringify(results, null, 2), 2000));
 
+    // use this if has v8:
+    var results = {"request_id": request_id, "results": attributes}
+    outlet(1, "response", split_long_string(JSON.stringify(results, null, 0), 2500));
+}
+
+function get_window_rect() {
+    var w = this.patcher.wind;
+    var title = w.title;
+    var size = w.size;
+    // outlet(1, "response", split_long_string(JSON.stringify(results, null, 0), 2500));
+}
+
+function get_avoid_rect_position(request_id) {
+    var p = this.patcher;
+    var l, t, r, b;
+    p.applyif(
+        function (obj) {
+            if (obj.rect[0] < l || l == undefined) {
+                l = obj.rect[0];
+            }
+            if (obj.rect[1] < t || t == undefined) {
+                t = obj.rect[1];
+            }
+            if (obj.rect[2] > r || r == undefined) {
+                r = obj.rect[2];
+            }
+            if (obj.rect[3] > b || b == undefined) {
+                b = obj.rect[3];
+            }
+        }, 
+        function (obj) {
+            return obj.varname.substring(0, 8) == "maxmcpid"
+    });
+    var avoid_rect = [l, t, r, b];
+
+    // use this if has v8:
+    var results = {"request_id": request_id, "results": avoid_rect}
+    outlet(1, "response", JSON.stringify(results, null, 1));
+}
 
 // ========================================
 // for debugging use only:

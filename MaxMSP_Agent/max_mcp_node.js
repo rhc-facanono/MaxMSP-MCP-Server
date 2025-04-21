@@ -28,7 +28,7 @@ Max.addHandler("response", async (...msg) => {
 	var str = msg.join("")
 	var data = safe_parse_json(str);
 	await io.of(NAMESPACE).emit("response", data);
-	//await Max.post(`Sent response: ${JSON.stringify(data)}`);
+	// await Max.post(`Sent response: ${JSON.stringify(data)}`);
 });
 
 Max.addHandler("port", async (msg) => {
