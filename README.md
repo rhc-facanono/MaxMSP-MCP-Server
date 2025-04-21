@@ -1,4 +1,7 @@
-# MaxMSP-MCP
+# MaxMSP-MCP  
+
+![img](./assets/demo.gif)
+
 Install `uv`, start a new environment and install the dependencies
 To install the Max/MSP MCP server, run
 ```
