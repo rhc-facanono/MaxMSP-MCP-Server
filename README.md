@@ -1,4 +1,4 @@
-# MaxMSP-MCP  
+# MaxMSP-MCP Server for LLMs
 
 ![img](./assets/demo.gif)
 
