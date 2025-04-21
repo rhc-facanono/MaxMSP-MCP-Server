@@ -5,5 +5,7 @@ description = "Max/MSP integration through Model Context Protocol"
 dependencies = [
     "python-osc",
     "mcp[cli]",
+    "python-socketio>=5.13.0",
+    "aiohttp>=3.11.17",
 ]
 requires-python = ">=3.11"

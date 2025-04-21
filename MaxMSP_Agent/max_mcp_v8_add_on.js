@@ -12,25 +12,35 @@ function safe_parse_json(str) {
     }
 }
 
+function split_long_string(inString, maxLength) {
+    // var longString = inString.replace(/\s+/g, "");
+    var result = [];
+    for (var i = 0; i < inString.length; i += maxLength) {
+        result.push(inString.substring(i, i + maxLength));
+    }
+    return result;
+}
+
+
 function anything() {
     var a = arrayfromargs(messagename, arguments);
     switch (messagename) {
         case "add_boxtext":
-            if (arguments.length < 1) {
-                post("add_boxtext: no arguments\n");
+            if (arguments.length < 2) {
+                post("add_boxtext: need two args: request_id, stringified_patcher_dict \n");
                 return;
             }
-            add_boxtext(arguments[0]);
+            add_boxtext(arguments[0], arguments[1]);
             break;
         default:
             outlet(1, messagename, ...arguments);
     }
-	
 }
-function add_boxtext(data){
+
+function add_boxtext(request_id, data){
     // post(patcher_dict + "\n");
     var patcher_dict = safe_parse_json(data);
-    var p = max.frontpatcher;
+    var p = this.patcher;
 
     patcher_dict.boxes.forEach(function (b) {
         var obj = p.getnamed(b.box.varname);
@@ -39,7 +49,8 @@ function add_boxtext(data){
         }
     });
 
-    outlet(1,JSON.stringify(patcher_dict, null, 2));
+    var results = {"request_id": request_id, "results": patcher_dict}
+    outlet(1, "response", split_long_string(JSON.stringify(results, null, 0), 2500));
 }
 
 

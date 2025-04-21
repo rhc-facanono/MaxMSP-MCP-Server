@@ -2,7 +2,6 @@
 from mcp.server.fastmcp import FastMCP, Context
 from contextlib import asynccontextmanager
 import asyncio
-import socketio
 
 from typing import Callable, Any
 import logging
@@ -10,9 +9,14 @@ import uuid
 import os
 import json
 
-SOCKETIO_SERVER_URL = os.environ.get("SOCKETIO_SERVER_URL", "http://127.0.0.1")
-SOCKETIO_SERVER_PORT = os.environ.get("SOCKETIO_SERVER_PORT", "5002")
-NAMESPACE = os.environ.get("NAMESPACE", "/mcp")
+# Configuration: IP and port for MaxMSP's [udpreceive] object
+MAX_OSC_HOST = os.environ.get(
+    "MAX_OSC_HOST", "127.0.0.1"
+)  # Localhost (adjust if Max runs on another machine)
+MAXMSP_UDP_PORT = int(
+    os.environ.get("MAXMSP_UDP_PORT", "5000")
+)  # Must match your [udpreceive] port in Max
+MAXMSP_FEEDBACK_PORT = int(os.environ.get("MAXMSP_FEEDBACK_PORT", "5002"))
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 docs_path = os.path.join(current_dir, "docs.json")
@@ -24,109 +28,115 @@ for obj_list in docs.values():
         flattened_docs[obj["name"]] = obj
 
 maxmsp = None
-io_server_started = False
+osc_server_started = False
 
 class MaxMSPConnection:
-    def __init__(self, server_url: str, server_port: int, namespace: str = NAMESPACE):
-        # from pythonosc.udp_client import SimpleUDPClient
-        # from pythonosc.dispatcher import Dispatcher
+    def __init__(self, max_ip, max_port, feedback_port):
+        from pythonosc.udp_client import SimpleUDPClient
+        from pythonosc.dispatcher import Dispatcher
         
-        self.server_url = server_url
-        self.server_port = server_port
-        self.namespace = namespace
+        self.host = max_ip
+        self.port = max_port
+        self.feedback_port = feedback_port
 
-        self.sio = socketio.AsyncClient()
+        self.sock = SimpleUDPClient(max_ip, max_port)
+        self.dispatcher = Dispatcher()
+        self.dispatcher.map("/mcp/notify", on_notify)
+        self.dispatcher.map("/mcp/response", self._on_response)
         self._pending = {} # fetch requests that are not yet completed
 
-        @self.sio.on("response", namespace=self.namespace)
-        async def _on_response(data):
-            req_id = data.get("request_id")
-            fut = self._pending.get(req_id)
-            if fut and not fut.done():
-                fut.set_result(data.get("results"))
-
-    async def send_command(self, cmd: dict):
+    def send_command(self, cmd: dict):
         """Send a command to MaxMSP."""
-        # self.sock.send_message("/mcp", json.dumps(cmd))
-        await self.sio.emit("command", cmd, namespace=self.namespace)
+        self.sock.send_message("/mcp", json.dumps(cmd))
         logging.info(f"Sent to MaxMSP: {cmd}")
 
     async def send_request(self, payload: dict, timeout = 2.0):
         """Send a fetch request to MaxMSP."""
         request_id = str(uuid.uuid4())
-        # future = self.loop.create_future()
-        future = asyncio.get_event_loop().create_future()
+        future = self.loop.create_future()
         self._pending[request_id] = future
 
         payload.update({"request_id": request_id})
-        # self.sock.send_message("/mcp", json.dumps(payload))
-        await self.sio.emit("request", payload, namespace=self.namespace)
+        self.sock.send_message("/mcp", json.dumps(payload))
         logging.info(f"Request to MaxMSP: {payload}")
 
         try:
             response = await asyncio.wait_for(future, timeout)
             return response
         except asyncio.TimeoutError:
-            raise TimeoutError("No response received in time")
+            raise TimeoutError(f"No response received in {timeout} seconds.")
         finally:
             self._pending.pop(request_id, None)
+
+    def _on_response(self, address, *args):
+        # Expected: /mcp/response <request_id> <json_response>
+        logging.info(f"Response: {args}")
+        if len(args) < 2:
+            return
+        request_id, json_response = args[0], args[1]
+        future = self._pending.get(request_id)
+        if future and not future.done():
+            future.set_result(json.loads(json_response))
 
     async def start_server(self) -> None:
         """IMPORTANT: This method should only be called ONCE per application instance.
         Multiple calls can lead to binding multiple ports unnecessarily.
         """
+        from pythonosc.osc_server import AsyncIOOSCUDPServer
+        
         try:
-            # Connect to the server 
-            full_url = f"{self.server_url}:{self.server_port}"
-            await self.sio.connect(full_url, namespaces=self.namespace)
-            logging.info(f"Connected to Socket.IO server at {full_url}")
+            # Create the server with the current feedback port
+            self.loop = asyncio.get_event_loop()
+            server = AsyncIOOSCUDPServer(
+                (self.host, self.feedback_port), 
+                self.dispatcher, 
+                self.loop
+            )
+            await server.create_serve_endpoint()
+            
             # Log a warning if we had to use an alternate port
-            # logging.warning(f"Make sure that Max is sending to port {self.feedback_port}")
+            logging.warning(f"Make sure that Max is sending to port {self.feedback_port}")
             return
             
         except OSError as e:
-            logging.error(f"Error starting Socket.IO server: {e}")
+            logging.error(f"Error starting OSC server: {e}")
 
 @asynccontextmanager
 async def server_lifespan(server: FastMCP):
     """Manage server lifespan"""
-    global maxmsp, io_server_started
-    if not io_server_started:
+    global maxmsp, osc_server_started
+    try:
+        maxmsp = MaxMSPConnection(MAX_OSC_HOST, MAXMSP_UDP_PORT, MAXMSP_FEEDBACK_PORT)
         try:
-            maxmsp = MaxMSPConnection(SOCKETIO_SERVER_URL, SOCKETIO_SERVER_PORT, NAMESPACE)
-            try:
+            if not osc_server_started:
                 # Start with port auto-selection if the configured port is unavailable
                 await maxmsp.start_server()
-                io_server_started = True
+                osc_server_started = True
                 
-                # if maxmsp.feedback_port != MAXMSP_FEEDBACK_PORT:
-                #     logging.warning(f"Make sure Max is configured to send to port {maxmsp.feedback_port}")
-                logging.info(f"Listening on {maxmsp.server_url}:{maxmsp.server_port}")
+                if maxmsp.feedback_port != MAXMSP_FEEDBACK_PORT:
+                    logging.warning(f"Make sure Max is configured to send to port {maxmsp.feedback_port}")
+                logging.info(f"Listening on {maxmsp.host}:{maxmsp.feedback_port}")
+            else:
+                logging.info(f"OSC server already running on {maxmsp.host}:{maxmsp.feedback_port}")
             
-                # Yield the Socket.IO connection to make it available in the lifespan context
-                yield {"maxmsp": maxmsp}
-            except Exception as e:
-                logging.error(f"lifespan error starting server: {e}")
-                await maxmsp.sio.disconnect()
-                raise
-    
-        finally:
-            logging.info("Shutting down connection")
-            await maxmsp.sio.disconnect()
-            pass
-    else:
-        logging.info(f"IO server already running on {maxmsp.server_url}:{maxmsp.server_port}")
+            # Yield the OSC connection to make it available in the lifespan context
+            yield {"maxmsp": maxmsp}
+        except Exception as e:
+            logging.error(f"lifespan error starting OSC server: {e}")
+            raise
+    finally:
+        pass
 
-# def on_notify(address: str, *args: Any) -> None:
-#     """Handle feedback messages from Max and notify MCP.
+def on_notify(address: str, *args: Any) -> None:
+    """Handle feedback messages from Max and notify MCP.
 
-#     Args:
-#         address: The OSC address received
-#         args: The arguments sent with the OSC message
-#     """
+    Args:
+        address: The OSC address received
+        args: The arguments sent with the OSC message
+    """
     
-#     logging.info(f"Received feedback from: {address}")
-#     logging.info(f"Content: {args}")
+    logging.info(f"Received feedback from: {address}")
+    logging.info(f"Content: {args}")
 
 
 # Create the MCP server with lifespan support
@@ -137,7 +147,7 @@ mcp = FastMCP(
 )
 
 @mcp.tool()
-async def add_max_object(
+def add_max_object(
     ctx: Context,
     position: list,
     obj_type: str,
@@ -161,11 +171,11 @@ async def add_max_object(
         "varname": varname,
     }
     cmd.update(kwargs)
-    await maxmsp.send_command(cmd)
+    maxmsp.send_command(cmd)
 
 
 @mcp.tool()
-async def remove_max_object(
+def remove_max_object(
     ctx: Context,
     varname: str,
 ):
@@ -177,11 +187,11 @@ async def remove_max_object(
     cmd = {"action": "remove_object"}
     kwargs = {"varname": varname}
     cmd.update(kwargs)
-    await maxmsp.send_command(cmd)
+    maxmsp.send_command(cmd)
 
 
 @mcp.tool()
-async def connect_max_objects(
+def connect_max_objects(
     ctx: Context,
     src_varname: str,
     outlet_idx: int,
@@ -204,11 +214,11 @@ async def connect_max_objects(
         "inlet_idx": inlet_idx,
     }
     cmd.update(kwargs)
-    await maxmsp.send_command(cmd)
+    maxmsp.send_command(cmd)
 
 
 @mcp.tool()
-async def disconnect_max_objects(
+def disconnect_max_objects(
     ctx: Context,
     src_varname: str,
     outlet_idx: int,
@@ -231,7 +241,7 @@ async def disconnect_max_objects(
         "inlet_idx": inlet_idx,
     }
     cmd.update(kwargs)
-    await maxmsp.send_command(cmd)
+    maxmsp.send_command(cmd)
 
 
 @mcp.tool()
@@ -260,39 +270,17 @@ def get_object_doc(ctx: Context, object_name: str) -> dict:
             "suggestion": "Make sure the object name is a valid MaxMSP object name.",
         }
 
-
-@mcp.tool()
-async def get_objects_in_patch(
-    ctx: Context,
-):
-    """Retrieve the list of existing objects in the current MaxMSP patch.
+@mcp.resource("patcher://objects")
+async def test_fetch_request():
+    """Send a test fetch request to MaxMSP and return the response.
     
-    Use this to understand the current state of the patch, including the objects(boxes) and patch cords(lines).
-    The retrieved list contains a list of objects including their maxclass, varname for scripting, 
-    position(patching_rect), and the boxtext when available, as well as a list of patch cords with their source and destination information.
+    Use this resource to verify the connection and functionality of the fetch command.
     
     Returns:
-        list: A list of objects and patch cords.
+        list: A list containing the response from MaxMSP.
     """
-    maxmsp = ctx.request_context.lifespan_context.get("maxmsp")
-    payload = {"action": "get_objects_in_patch"}
-    response = await maxmsp.send_request(payload)
-
-    return [response]
-
-@mcp.tool()
-async def get_objects_in_selected(
-    ctx: Context,
-):
-    """Retrieve the list of objects that is selected in an unlocked patcher window.
-
-    Use this when the user wanted to reference to the selected objects.
     
-    Returns:
-        list: A list of objects and patch cords.
-    """
-    maxmsp = ctx.request_context.lifespan_context.get("maxmsp")
-    payload = {"action": "get_objects_in_selected"}
+    payload = {"action": "fetch_test"}
     response = await maxmsp.send_request(payload)
 
     return [response]
