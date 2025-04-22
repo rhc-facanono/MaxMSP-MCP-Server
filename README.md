@@ -2,12 +2,12 @@
 
 This project uses the [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) to let LLMs directly understand and generate Max patches.
 
-### Understand
+### Understand: LLM Explaining a Max Patch
 
 ![img](./assets/understand.gif)
 [Video link](https://www.youtube.com/watch?v=YKXqS66zrec). Acknowledgement: the patch being explained is downloaded from [here](https://github.com/jeffThompson/MaxMSP_TeachingSketches/blob/master/02_MSP/07%20Ring%20Modulation.maxpat). Text comments in the original file are deleted.
 
-### Generate
+### Generate: LLM Making an FM Synth
 
 ![img](./assets/generate.gif)
 Check out the [full video](https://www.youtube.com/watch?v=Ns89YuE5-to) where you can listen to the synthesised sounds.
