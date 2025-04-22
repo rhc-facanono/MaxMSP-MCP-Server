@@ -41,13 +41,14 @@ cd MaxMSP-MCP-Server
 uv venv
 uv pip install -r requirements.txt
 ```
-4. Connect the MCP server with a MCP client (which hosts LLMs):
+4. Connect the MCP server to a MCP client (which hosts LLMs):
 ```
-# Claude
+# Claude:
 python install.py --client claude
-# Cursor
+# or Cursor:
 python install.py --client cursor
 ```
+To use other clients (check the [list](https://modelcontextprotocol.io/clients)), you need to download, mannually add the configuration file path [here](https://github.com/tiianhk/MaxMSP-MCP-Server/blob/main/install.py#L6-L13), and connect by running `python install.py --client {your_client_name}`.
 
 ### Installing to a Max patch  
 
