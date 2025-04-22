@@ -15,20 +15,24 @@
 
 ### Installing the MCP server
 
-1. Install [uv](https://github.com/astral-sh/uv)
+1. Install [uv](https://github.com/astral-sh/uv):
 ```
 # On macOS and Linux:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 # On Windows:
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
-2. Clone this repository and open its directory
-3. Start a new environment and install python dependencies
+2. Clone this repository and open its directory:
+```
+git clone https://github.com/tiianhk/MaxMSP-MCP-Server.git
+cd MaxMSP-MCP-Server
+```
+3. Start a new environment and install python dependencies:
 ```
 uv venv
 uv pip install -r requirements.txt
 ```
-4. install the Max/MSP MCP server, run
+4. Install the MaxMSP MCP server:
 ```
 # Install for Claude
 python install.py --client claude
