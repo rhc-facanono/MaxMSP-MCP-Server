@@ -15,7 +15,7 @@
 
 ### Installing the MCP server
 
-1. Install [uv](https://github.com/astral-sh/uv):
+1. Install uv:
 ```
 # On macOS and Linux:
 curl -LsSf https://astral.sh/uv/install.sh | sh

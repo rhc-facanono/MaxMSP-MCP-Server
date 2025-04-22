@@ -6,8 +6,8 @@ from pathlib import Path
 CONFIG_PATHS = {
     "claude": (
         "~/Library/Application Support/Claude/claude_desktop_config.json"
-        if os.name == "posix" # macOS or Linux
-        else r"%APPDATA%\Claude\claude_desktop_config.json" # Windows
+        if os.name == "posix"  # macOS or Linux
+        else r"%APPDATA%\Claude\claude_desktop_config.json"  # Windows
     ),
     "cursor": "~/.cursor/mcp.json",
 }
