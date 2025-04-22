@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 231.0, 290.0, 1041.0, 673.0 ],
+		"rect" : [ 357.0, -818.0, 1041.0, 673.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"showrootpatcherontab" : 0,
 		"showontab" : 0,
@@ -76,35 +76,10 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 231.0, 316.0, 1041.0, 647.0 ],
+						"rect" : [ 357.0, -792.0, 1041.0, 647.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
-								"box" : 								{
-									"id" : "obj-2",
-									"maxclass" : "ezdac~",
-									"numinlets" : 2,
-									"numoutlets" : 0,
-									"patching_rect" : [ 525.0, 425.0, 45.0, 45.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"bubble" : 1,
-									"bubblepoint" : 1.0,
-									"bubbleside" : 2,
-									"id" : "obj-15",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 9.0, 7.0, 165.0, 39.0 ],
-									"text" : "AI will add objects there:",
-									"varname" : "obj-0"
-								}
-
-							}
-, 							{
 								"box" : 								{
 									"color" : [ 0.869177997112274, 0.548376858234406, 0.0, 1.0 ],
 									"id" : "obj-8",
@@ -123,7 +98,7 @@
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 694.0, 225.0, 1000.0, 780.0 ],
+										"rect" : [ 478.0, 168.0, 1000.0, 780.0 ],
 										"gridsize" : [ 15.0, 15.0 ],
 										"boxes" : [ 											{
 												"box" : 												{
@@ -807,7 +782,7 @@
 
 																			}
  ],
-																		"originid" : "pat-955"
+																		"originid" : "pat-12"
 																	}
 ,
 																	"patching_rect" : [ 783.25, 219.0, 113.5, 22.0 ],
@@ -1069,7 +1044,7 @@
 
 																			}
  ],
-																		"originid" : "pat-957"
+																		"originid" : "pat-14"
 																	}
 ,
 																	"patching_rect" : [ 727.5, 359.0, 71.0, 22.0 ],
@@ -1291,7 +1266,7 @@
 
 																			}
  ],
-																		"originid" : "pat-959"
+																		"originid" : "pat-16"
 																	}
 ,
 																	"patching_rect" : [ 648.5, 359.0, 71.0, 22.0 ],
@@ -1513,7 +1488,7 @@
 
 																			}
  ],
-																		"originid" : "pat-961"
+																		"originid" : "pat-18"
 																	}
 ,
 																	"patching_rect" : [ 568.5, 359.0, 71.0, 22.0 ],
@@ -1735,7 +1710,7 @@
 
 																			}
  ],
-																		"originid" : "pat-963"
+																		"originid" : "pat-20"
 																	}
 ,
 																	"patching_rect" : [ 489.5, 359.0, 71.0, 22.0 ],
@@ -1957,7 +1932,7 @@
 
 																			}
  ],
-																		"originid" : "pat-965"
+																		"originid" : "pat-22"
 																	}
 ,
 																	"patching_rect" : [ 412.5, 359.0, 71.0, 22.0 ],
@@ -2192,7 +2167,7 @@
 
 																			}
  ],
-																		"originid" : "pat-967"
+																		"originid" : "pat-24"
 																	}
 ,
 																	"patching_rect" : [ 335.5, 359.0, 71.0, 22.0 ],
@@ -2414,7 +2389,7 @@
 
 																			}
  ],
-																		"originid" : "pat-969"
+																		"originid" : "pat-26"
 																	}
 ,
 																	"patching_rect" : [ 260.5, 359.0, 71.0, 22.0 ],
@@ -2636,7 +2611,7 @@
 
 																			}
  ],
-																		"originid" : "pat-971"
+																		"originid" : "pat-28"
 																	}
 ,
 																	"patching_rect" : [ 185.5, 359.0, 71.0, 22.0 ],
@@ -2858,7 +2833,7 @@
 
 																			}
  ],
-																		"originid" : "pat-973"
+																		"originid" : "pat-30"
 																	}
 ,
 																	"patching_rect" : [ 110.5, 359.0, 71.0, 22.0 ],
@@ -3187,7 +3162,7 @@
 
 															}
  ],
-														"originid" : "pat-953"
+														"originid" : "pat-10"
 													}
 ,
 													"patching_rect" : [ 330.0, 275.0, 113.0, 22.0 ],
@@ -3286,6 +3261,8 @@
 													"saved_object_attributes" : 													{
 														"autostart" : 0,
 														"defer" : 0,
+														"node_bin_path" : "",
+														"npm_bin_path" : "",
 														"watch" : 0
 													}
 ,
@@ -3477,7 +3454,7 @@
 
 											}
  ],
-										"originid" : "pat-951"
+										"originid" : "pat-8"
 									}
 ,
 									"patching_rect" : [ 755.0, 198.0, 103.0, 22.0 ],
@@ -3648,7 +3625,7 @@
 
 											}
  ],
-										"originid" : "pat-975"
+										"originid" : "pat-32"
 									}
 ,
 									"patching_rect" : [ 755.0, 546.0, 46.0, 22.0 ],
@@ -3850,7 +3827,7 @@
 
 							}
  ],
-						"originid" : "pat-949"
+						"originid" : "pat-6"
 					}
 ,
 					"patching_rect" : [ 147.0, 117.0, 101.0, 22.0 ],
@@ -4594,7 +4571,7 @@
 
 																			}
  ],
-																		"originid" : "pat-983"
+																		"originid" : "pat-40"
 																	}
 ,
 																	"patching_rect" : [ 783.25, 219.0, 113.5, 22.0 ],
@@ -4856,7 +4833,7 @@
 
 																			}
  ],
-																		"originid" : "pat-985"
+																		"originid" : "pat-42"
 																	}
 ,
 																	"patching_rect" : [ 727.5, 359.0, 71.0, 22.0 ],
@@ -5078,7 +5055,7 @@
 
 																			}
  ],
-																		"originid" : "pat-987"
+																		"originid" : "pat-44"
 																	}
 ,
 																	"patching_rect" : [ 648.5, 359.0, 71.0, 22.0 ],
@@ -5300,7 +5277,7 @@
 
 																			}
  ],
-																		"originid" : "pat-989"
+																		"originid" : "pat-46"
 																	}
 ,
 																	"patching_rect" : [ 568.5, 359.0, 71.0, 22.0 ],
@@ -5522,7 +5499,7 @@
 
 																			}
  ],
-																		"originid" : "pat-991"
+																		"originid" : "pat-48"
 																	}
 ,
 																	"patching_rect" : [ 489.5, 359.0, 71.0, 22.0 ],
@@ -5744,7 +5721,7 @@
 
 																			}
  ],
-																		"originid" : "pat-993"
+																		"originid" : "pat-50"
 																	}
 ,
 																	"patching_rect" : [ 412.5, 359.0, 71.0, 22.0 ],
@@ -5979,7 +5956,7 @@
 
 																			}
  ],
-																		"originid" : "pat-995"
+																		"originid" : "pat-52"
 																	}
 ,
 																	"patching_rect" : [ 335.5, 359.0, 71.0, 22.0 ],
@@ -6201,7 +6178,7 @@
 
 																			}
  ],
-																		"originid" : "pat-997"
+																		"originid" : "pat-54"
 																	}
 ,
 																	"patching_rect" : [ 260.5, 359.0, 71.0, 22.0 ],
@@ -6423,7 +6400,7 @@
 
 																			}
  ],
-																		"originid" : "pat-999"
+																		"originid" : "pat-56"
 																	}
 ,
 																	"patching_rect" : [ 185.5, 359.0, 71.0, 22.0 ],
@@ -6645,7 +6622,7 @@
 
 																			}
  ],
-																		"originid" : "pat-1001"
+																		"originid" : "pat-58"
 																	}
 ,
 																	"patching_rect" : [ 110.5, 359.0, 71.0, 22.0 ],
@@ -6974,7 +6951,7 @@
 
 															}
  ],
-														"originid" : "pat-981"
+														"originid" : "pat-38"
 													}
 ,
 													"patching_rect" : [ 78.0, 137.0, 113.0, 22.0 ],
@@ -7100,7 +7077,7 @@
 
 											}
  ],
-										"originid" : "pat-979"
+										"originid" : "pat-36"
 									}
 ,
 									"patching_rect" : [ 232.0, 269.0, 75.0, 22.0 ],
@@ -7187,6 +7164,8 @@
 									"saved_object_attributes" : 									{
 										"autostart" : 0,
 										"defer" : 0,
+										"node_bin_path" : "",
+										"npm_bin_path" : "",
 										"watch" : 0
 									}
 ,
@@ -7232,7 +7211,7 @@
 
 							}
  ],
-						"originid" : "pat-977"
+						"originid" : "pat-34"
 					}
 ,
 					"patching_rect" : [ 62.0, 104.0, 49.0, 22.0 ],
@@ -7257,24 +7236,24 @@
 
 			}
  ],
-		"originid" : "pat-947",
+		"originid" : "pat-4",
 		"dependency_cache" : [ 			{
 				"name" : "max_mcp.js",
-				"bootpath" : "~/PhD/25_05_max_mcp/MaxMSP-MCP-Server/MaxMSP_Agent",
+				"bootpath" : "~/repos/MaxMSP-MCP-Server/MaxMSP_Agent",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "max_mcp_node.js",
-				"bootpath" : "~/PhD/25_05_max_mcp/MaxMSP-MCP-Server/MaxMSP_Agent",
+				"bootpath" : "~/repos/MaxMSP-MCP-Server/MaxMSP_Agent",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "max_mcp_v8_add_on.js",
-				"bootpath" : "~/PhD/25_05_max_mcp/MaxMSP-MCP-Server/MaxMSP_Agent",
+				"bootpath" : "~/repos/MaxMSP-MCP-Server/MaxMSP_Agent",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
