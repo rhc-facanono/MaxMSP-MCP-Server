@@ -5,6 +5,7 @@ This project uses the Model Context Protocol (MCP) to let LLMs directly understa
 ### Understand
 
 ![img](./assets/understand.gif)
+(Acknowledgement: the patch being explained is downloaded from [here](https://github.com/jeffThompson/MaxMSP_TeachingSketches/blob/master/02_MSP/07%20Ring%20Modulation.maxpat). Text comments in the original file are deleted.)
 
 ### Generate
 
