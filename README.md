@@ -1,8 +1,14 @@
 # MaxMSP-MCP Server
 
-This project uses the Model Context Protocol (MCP) to let LLMs directly understand, edit, and generate Max patches. Examples:
+This project uses the Model Context Protocol (MCP) to let LLMs directly understand and generate Max patches.
 
-![img](./assets/demo.gif)
+### Understand
+
+![img](./assets/understand.gif)
+
+### Generate
+
+![img](./assets/generate.gif)
 
 ## Installation  
 
