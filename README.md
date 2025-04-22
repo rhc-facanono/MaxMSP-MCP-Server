@@ -1,11 +1,10 @@
-# MaxMSP-MCP Server for LLMs
+# MaxMSP-MCP Server
+
+This project uses the Model Context Protocol (MCP) to let LLMs directly understand, edit, and generate Max patches. Examples:
 
 ![img](./assets/demo.gif)
 
-
 ## Installation  
-
-
 
 ### Prerequisites  
 
