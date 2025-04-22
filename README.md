@@ -1,6 +1,6 @@
 # MaxMSP-MCP Server
 
-This project uses the Model Context Protocol (MCP) to let LLMs directly understand and generate Max patches.
+This project uses the [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) to let LLMs directly understand and generate Max patches.
 
 ### Understand
 
@@ -41,11 +41,11 @@ cd MaxMSP-MCP-Server
 uv venv
 uv pip install -r requirements.txt
 ```
-4. Install the MaxMSP MCP server:
+4. Connect the MCP server with a MCP client (which hosts LLMs):
 ```
-# Install for Claude
+# Claude
 python install.py --client claude
-# Install for Cursor
+# Cursor
 python install.py --client cursor
 ```
 
