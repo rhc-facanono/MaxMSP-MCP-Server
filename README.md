@@ -12,7 +12,7 @@ This project uses the [Model Context Protocol](https://modelcontextprotocol.io/i
 ![img](./assets/generate.gif)
 Check out the [full video](https://www.youtube.com/watch?v=Ns89YuE5-to) where you can listen to the synthesised sounds.
 
-The LLM agent has access to the official documentation for each object, which helps in retrieving and explaining unfamiliar objects, debugging, and verifying their own actions.
+The LLM agent has access to the official documentation of each object, which helps in retrieving and explaining objects, debugging, and verifying their own actions.
 
 ## Installation  
 
@@ -52,3 +52,7 @@ python install.py --client cursor
 ### Installing to a Max patch  
 
 Open `MaxMSP_Agent/demo.maxpat`. In the first tab, click the `script npm version` message to verify that [npm](https://github.com/npm/cli) is installed. Then click `script npm install` to install the required dependencies. Switch to the second tab to access the agent. Click `script start` to initiate communication with Python. Once connected, you can interact with the LLM interface to have it explain, modify, or create Max objects within the patch.
+
+## Disclaimer
+
+This is a third party implementation and not made by Cycling '74.
