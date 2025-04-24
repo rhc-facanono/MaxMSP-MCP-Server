@@ -12,7 +12,7 @@ This project uses the [Model Context Protocol](https://modelcontextprotocol.io/i
 ![img](./assets/generate.gif)
 Check out the [full video](https://www.youtube.com/watch?v=Ns89YuE5-to) where you can listen to the synthesised sounds.
 
-The LLM agent has access to the official documentation of each object, which helps in retrieving and explaining objects, debugging, and verifying their own actions.
+The LLM agent has access to the official documentation of each object, as well as objects in the current patch and subpatch windows, which helps in retrieving and explaining objects, debugging, and verifying their own actions.
 
 ## Installation  
 
