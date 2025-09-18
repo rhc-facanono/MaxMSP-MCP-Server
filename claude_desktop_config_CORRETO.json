@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+        "MaxMSPMCP": {
+            "command": "C:\\Users\\Pichau\\.local\\bin\\uv.exe",
+            "args": [
+                "run",
+                "python",
+                "E:\\coisas\\Composições\\Patches Max\\MaxMSP-MCP-Server\\server.py"
+            ],
+            "cwd": "E:\\coisas\\Composições\\Patches Max\\MaxMSP-MCP-Server"
+        }
+    }
+}

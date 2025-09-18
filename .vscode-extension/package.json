@@ -1,0 +1,77 @@
+{
+    "name": "maxmsp-mcp-copilot",
+    "displayName": "MaxMSP MCP for GitHub Copilot",
+    "description": "Integra MaxMSP-MCP Server com GitHub Copilot Chat",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "maxmsp-mcp.startServer",
+                "title": "Start MaxMSP-MCP Server"
+            },
+            {
+                "command": "maxmsp-mcp.stopServer",
+                "title": "Stop MaxMSP-MCP Server"
+            },
+            {
+                "command": "maxmsp-mcp.explainPatch",
+                "title": "Explain MaxMSP Patch"
+            },
+            {
+                "command": "maxmsp-mcp.createPatch",
+                "title": "Create MaxMSP Patch"
+            }
+        ],
+        "configuration": {
+            "title": "MaxMSP MCP",
+            "properties": {
+                "maxmsp-mcp.serverPath": {
+                    "type": "string",
+                    "default": "./server.py",
+                    "description": "Path to MaxMSP-MCP server.py file"
+                },
+                "maxmsp-mcp.port": {
+                    "type": "number",
+                    "default": 5002,
+                    "description": "Port for MaxMSP-MCP server"
+                },
+                "maxmsp-mcp.autoStart": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Auto-start MCP server when opening workspace"
+                }
+            }
+        },
+        "chatParticipants": [
+            {
+                "id": "maxmsp",
+                "name": "MaxMSP",
+                "description": "MaxMSP patch assistant using MCP",
+                "isSticky": true
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.85.0",
+        "@types/node": "18.x",
+        "typescript": "^5.3.2"
+    },
+    "dependencies": {
+        "socket.io-client": "^4.8.1"
+    }
+}

@@ -10,6 +10,11 @@ CONFIG_PATHS = {
         else r"%APPDATA%\Claude\claude_desktop_config.json"  # Windows
     ),
     "cursor": "~/.cursor/mcp.json",
+    "vscode": (
+        "~/.config/Code/User/settings.json"
+        if os.name == "posix"  # macOS or Linux
+        else r"%APPDATA%\Code\User\settings.json"  # Windows
+    ),
 }
 
 
